@@ -80,7 +80,7 @@ const HeroSection = () => {
               behavior: 'smooth'
             });
           }
-        }}>Request Access</button>
+        }}>Request Early Access</button>
 
           {/* Trusted By Section */}
           
