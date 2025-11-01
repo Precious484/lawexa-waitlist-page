@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { BookOpen, Briefcase, Users, FileText, Search, MessageSquare, Scale, GraduationCap } from 'lucide-react';
+import { BookOpen, Briefcase, Users, FileText, Search, MessageSquare, Scale, GraduationCap, Bookmark, Globe } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 const UseCases = () => {
@@ -175,6 +175,59 @@ const UseCases = () => {
           </div>
         </section>
 
+        {/* Key Features Section */}
+        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-brown to-lawexa-dark">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Powerful Features at Your Fingertips</h2>
+              <p className="text-gray-100 text-lg max-w-2xl mx-auto">
+                Everything you need to navigate the legal landscape with confidence
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {[
+                {
+                  icon: <MessageSquare className="w-10 h-10 text-primary" />,
+                  title: "AI-Powered Chat Interface",
+                  description: "Ask legal questions in plain language and receive instant, accurate answers. Our AI understands context and provides relevant case law and statute references."
+                },
+                {
+                  icon: <BookOpen className="w-10 h-10 text-primary" />,
+                  title: "Comprehensive Case Library",
+                  description: "Access landmark cases and legal precedents from courts worldwide. Search by title, court, citation, or legal topic with trending cases by institution."
+                },
+                {
+                  icon: <FileText className="w-10 h-10 text-primary" />,
+                  title: "Legal Document Navigator",
+                  description: "Browse constitutions, statutes, and legal documents with intelligent table of contents, section navigation, and quick bookmarking features."
+                },
+                {
+                  icon: <Search className="w-10 h-10 text-primary" />,
+                  title: "Smart Search & Discovery",
+                  description: "Find exactly what you need with advanced search across cases, statutes, and documents. Filter by jurisdiction, date, and legal topics."
+                },
+                {
+                  icon: <Bookmark className="w-10 h-10 text-primary" />,
+                  title: "Personal Library",
+                  description: "Save and organize your research with folders, bookmarks, and notes. Build your own collection of relevant cases and legal resources."
+                },
+                {
+                  icon: <Globe className="w-10 h-10 text-primary" />,
+                  title: "Multi-Jurisdiction Support",
+                  description: "Access legal information from multiple jurisdictions including Nigerian, Commonwealth, and international law with proper attribution."
+                }
+              ].map((feature, index) => (
+                <Card key={index} className="bg-white/10 backdrop-blur-md border border-white/20 p-8 hover:bg-white/15 transition-all">
+                  <div className="mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                  <p className="text-gray-100 leading-relaxed">{feature.description}</p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Stats Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
@@ -206,9 +259,9 @@ const UseCases = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 className="btn-gold text-lg"
-                onClick={() => window.location.href = '/'}
+                onClick={() => window.location.href = '/#waitlist'}
               >
-                Join the Waitlist
+                Request Your Invitation
               </button>
             </div>
           </div>

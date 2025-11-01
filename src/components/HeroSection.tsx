@@ -58,7 +58,7 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto fade-in">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-lg px-4">
-            <span className="text-primary">Legal Intelligence</span>
+            <span className="text-primary">AI-Powered Legal Assistant</span>
             <br />
             <span className="text-primary">For </span>
             <span className="inline-block min-w-[150px] sm:min-w-[200px] text-left">
@@ -67,14 +67,14 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4">
-            Get instant legal answers, understand contracts, and navigate legal matters with confidence. 
-            <span className="block mt-2 text-primary font-semibold">No Law Degree Required</span>
+          <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4">
+            <span className="font-semibold">Smarter studying. Clearer law. Instant answers.</span>
+            <span className="block mt-2">Get in before the official launch.</span>
           </p>
 
           {/* CTA Button */}
           <button 
-            className="btn-gold text-lg mb-8"
+            className="btn-gold text-lg mb-4"
             onClick={() => {
               const waitlistSection = document.querySelector('#waitlist') || 
                 document.querySelector('section[class*="waitlist"]') ||
@@ -84,8 +84,13 @@ const HeroSection = () => {
               }
             }}
           >
-            Join the Waitlist - Coming Soon
+            Request Your Invitation
           </button>
+
+          {/* Share CTA */}
+          <p className="text-sm sm:text-base text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-md px-4">
+            Want to jump the line? Share Lawexa on Twitter, Instagram, or LinkedIn and tag us → you'll move up the waitlist instantly.
+          </p>
 
           {/* Trusted By Section */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3">

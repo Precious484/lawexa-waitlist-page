@@ -3,11 +3,10 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import UniversityCarousel from '@/components/UniversityCarousel';
-import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import WaitlistForm from '@/components/WaitlistForm';
-import { Sparkles, Shield, Zap, Globe } from 'lucide-react';
+import { Sparkles, Shield, Zap, Globe, BookOpen, MessageSquare, FileText } from 'lucide-react';
 
 const Index = () => {
   useScrollAnimation();
@@ -115,7 +114,56 @@ const Index = () => {
         </section>
 
         <UniversityCarousel />
-        <TestimonialsSection />
+        
+        {/* Use Cases Preview */}
+        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-brown to-lawexa-dark">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Can Lawexa Do?</h2>
+              <p className="text-gray-100 text-lg max-w-2xl mx-auto">
+                From legal research to instant answers, Lawexa is your AI-powered legal companion
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all">
+                <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                  <MessageSquare className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">AI Legal Chat</h3>
+                <p className="text-gray-100 leading-relaxed">
+                  Ask any legal question and get instant, accurate answers powered by advanced AI trained on legal documents and case law.
+                </p>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all">
+                <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                  <BookOpen className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Legal Case Library</h3>
+                <p className="text-gray-100 leading-relaxed">
+                  Explore landmark cases and legal precedents from courts around the world. Perfect for students and legal professionals.
+                </p>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all">
+                <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                  <FileText className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Statute & Document Access</h3>
+                <p className="text-gray-100 leading-relaxed">
+                  Access comprehensive legal statutes, constitutions, and documents with intelligent search and table of contents navigation.
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center mt-12">
+              <a href="/use-cases" className="btn-gold text-lg inline-block">
+                Explore All Use Cases
+              </a>
+            </div>
+          </div>
+        </section>
         
         <section id="faq">
           <FAQSection />
