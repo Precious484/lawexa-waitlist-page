@@ -43,12 +43,7 @@ const Footer = () => {
             <p className="text-gray-300 mb-6 leading-relaxed">
               Legal intelligence for All. Skip the jargon, be fearless with smart legal tools for Study, life, and business
             </p>
-            <Button 
-              className="btn-gold"
-              onClick={() => window.open('https://app.lawexa.com/register', '_blank')}
-            >
-              Try Lawexa
-            </Button>
+            <Button className="btn-gold" onClick={() => window.open('https://app.lawexa.com/register', '_blank')}>Request Early Access</Button>
           </div>
 
           {/* Quick Links */}
