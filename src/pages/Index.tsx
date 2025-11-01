@@ -7,6 +7,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import WaitlistForm from '@/components/WaitlistForm';
+import PerksSection from '@/components/PerksSection';
 import { Sparkles, Shield, Zap, Globe } from 'lucide-react';
 const Index = () => {
   useScrollAnimation();
@@ -100,6 +101,8 @@ const Index = () => {
 
         
         <TestimonialsSection />
+        
+        <PerksSection />
         
         <section id="faq">
           <FAQSection />
