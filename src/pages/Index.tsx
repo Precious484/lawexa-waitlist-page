@@ -3,15 +3,11 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import UniversityCarousel from '@/components/UniversityCarousel';
-import PlatformSection from '@/components/PlatformSection';
-import ComparisonSection from '@/components/ComparisonSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
-import VideoSection from '@/components/VideoSection';
-import PricingSection from '@/components/PricingSection';
-import WhatsAppCommunitySection from '@/components/WhatsAppCommunitySection';
-import DownloadSection from '@/components/DownloadSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
+import WaitlistForm from '@/components/WaitlistForm';
+import { Sparkles, Shield, Zap, Globe } from 'lucide-react';
 
 const Index = () => {
   useScrollAnimation();
@@ -66,17 +62,61 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <section id="features">
-          <PlatformSection />
+        
+        {/* Waitlist Form Section */}
+        <section id="waitlist" className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-brown-glow to-lawexa-dark relative overflow-hidden">
+          <div className="absolute inset-0 hero-grid"></div>
+          <div className="container mx-auto px-4 relative z-10">
+            <WaitlistForm />
+          </div>
         </section>
-        <ComparisonSection />
+
+        {/* Features Highlight */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Join the Waitlist?</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Be among the first to experience the future of legal intelligence
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              {[
+                {
+                  icon: <Sparkles className="w-10 h-10 text-primary" />,
+                  title: "AI-Powered",
+                  description: "Advanced AI trained on legal documents and case law"
+                },
+                {
+                  icon: <Shield className="w-10 h-10 text-primary" />,
+                  title: "Secure & Private",
+                  description: "Your data is encrypted and never shared"
+                },
+                {
+                  icon: <Zap className="w-10 h-10 text-primary" />,
+                  title: "Instant Answers",
+                  description: "Get legal insights in seconds, not hours"
+                },
+                {
+                  icon: <Globe className="w-10 h-10 text-primary" />,
+                  title: "Always Available",
+                  description: "24/7 access from any device, anywhere"
+                }
+              ].map((feature, index) => (
+                <div key={index} className="text-center fade-in">
+                  <div className="flex justify-center mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <UniversityCarousel />
         <TestimonialsSection />
-        <VideoSection />
-        <section id="pricing">
-          <PricingSection />
-        </section>
-        <WhatsAppCommunitySection />
-        <DownloadSection />
+        
         <section id="faq">
           <FAQSection />
         </section>

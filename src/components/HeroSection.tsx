@@ -67,11 +67,25 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4">Ask any legal question, Understand Contracts and more In minutes. 
-No Law Degree Required</p>
+          <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4">
+            Get instant legal answers, understand contracts, and navigate legal matters with confidence. 
+            <span className="block mt-2 text-primary font-semibold">No Law Degree Required</span>
+          </p>
 
-          {/* Interactive Chat Input */}
-          <HeroChatInput />
+          {/* CTA Button */}
+          <button 
+            className="btn-gold text-lg mb-8"
+            onClick={() => {
+              const waitlistSection = document.querySelector('#waitlist') || 
+                document.querySelector('section[class*="waitlist"]') ||
+                document.querySelector('form');
+              if (waitlistSection) {
+                waitlistSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
+            Join the Waitlist - Coming Soon
+          </button>
 
           {/* Trusted By Section */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3">

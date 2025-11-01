@@ -16,10 +16,9 @@ const Header = () => {
   }, []);
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'Use Cases', href: '/use-cases' },
     { name: 'About Us', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Products', href: '/products' }
+    { name: 'Blog', href: '/blog' }
   ];
 
   const productLinks = [
@@ -56,21 +55,10 @@ const Header = () => {
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Button 
-              variant="outline" 
-              className={`transition-colors duration-300 ${
-                isScrolled 
-                  ? 'bg-transparent border-foreground text-foreground hover:bg-foreground hover:text-white' 
-                  : 'bg-transparent border-white text-white hover:bg-white hover:text-black hover:border-white'
-              }`}
-              onClick={() => window.open('https://app.lawexa.com/login', '_blank')}
-            >
-              Log in
-            </Button>
-            <Button 
               className="btn-gold"
-              onClick={() => window.open('https://app.lawexa.com/register', '_blank')}
+              onClick={() => window.location.href = '/#waitlist'}
             >
-              Sign Up
+              Join Waitlist
             </Button>
           </div>
 
@@ -105,26 +93,15 @@ const Header = () => {
                 </Link>
               ))}
               
-              
               <div className="flex flex-col space-y-3 pt-4 border-t border-border">
-                <Button 
-                  variant="outline" 
-                  className="w-full border-foreground text-foreground hover:bg-foreground hover:text-white"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.open('https://app.lawexa.com/login', '_blank');
-                  }}
-                >
-                  Log in
-                </Button>
                 <Button 
                   className="w-full btn-gold"
                   onClick={() => {
                     setIsMenuOpen(false);
-                    window.open('https://app.lawexa.com/register', '_blank');
+                    window.location.href = '/#waitlist';
                   }}
                 >
-                  Sign Up
+                  Join Waitlist
                 </Button>
               </div>
             </nav>
