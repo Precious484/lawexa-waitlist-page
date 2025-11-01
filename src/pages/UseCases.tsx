@@ -3,6 +3,10 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { BookOpen, Briefcase, Users, FileText, Search, MessageSquare, Scale, GraduationCap } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import caseLibraryInterface from '@/assets/case-library-interface.png';
+import statuteInterface1 from '@/assets/statute-interface-1.png';
+import statuteInterface2 from '@/assets/statute-interface-2.png';
 const UseCases = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -140,11 +144,90 @@ const UseCases = () => {
           </div>
         </section>
 
-        {/* Stats Section */}
-        
+        {/* Interface Showcase */}
+        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">See Lawexa in Action</h2>
+              <p className="text-gray-100 text-lg max-w-2xl mx-auto">
+                Powerful features designed for legal excellence
+              </p>
+            </div>
+            
+            <div className="space-y-16 max-w-6xl mx-auto">
+              {/* Case Library */}
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="order-2 md:order-1 rounded-lg overflow-hidden shadow-2xl border border-primary/20">
+                  <img src={caseLibraryInterface} alt="Lawexa Case Library Interface" className="w-full" />
+                </div>
+                <div className="order-1 md:order-2">
+                  <h3 className="text-2xl font-bold mb-4">Comprehensive Case Library</h3>
+                  <p className="text-gray-300 mb-6">
+                    Access thousands of landmark cases from courts across the region. Filter by jurisdiction, topic, or trending cases relevant to your studies or practice.
+                  </p>
+                  <ul className="space-y-2 text-gray-200">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Trending cases by institution</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Bookmark important cases</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Case summaries and analysis</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Statute Browser */}
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Advanced Statute Browser</h3>
+                  <p className="text-gray-300 mb-6">
+                    Navigate through statutes, constitutions, and legal documents with an intuitive interface. Bookmark sections, share with colleagues, and provide feedback.
+                  </p>
+                  <ul className="space-y-2 text-gray-200">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Easy navigation by chapters</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Bookmark and organize sections</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                      <span>Share with your network</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20">
+                  <img src={statuteInterface2} alt="Lawexa Statute Browser Interface" className="w-full" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
-        
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Legal Work?</h2>
+            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+              Join the waitlist and be among the first to experience the future of legal intelligence.
+            </p>
+            <Button 
+              size="lg" 
+              className="text-lg px-8"
+              onClick={() => window.location.href = '/#waitlist'}
+            >
+              Request Your Invitation
+            </Button>
+          </div>
+        </section>
       </main>
 
       <Footer />

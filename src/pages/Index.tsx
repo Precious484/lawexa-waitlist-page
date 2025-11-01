@@ -9,6 +9,9 @@ import Footer from '@/components/Footer';
 import WaitlistForm from '@/components/WaitlistForm';
 import PerksSection from '@/components/PerksSection';
 import { Sparkles, Shield, Zap, Globe } from 'lucide-react';
+import caseLibraryInterface from '@/assets/case-library-interface.png';
+import statuteInterface1 from '@/assets/statute-interface-1.png';
+import statuteInterface2 from '@/assets/statute-interface-2.png';
 const Index = () => {
   useScrollAnimation();
   useEffect(() => {
@@ -99,6 +102,35 @@ const Index = () => {
           </div>
         </section>
 
+        {/* App Interface Showcase */}
+        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience Lawexa's Powerful Interface</h2>
+              <p className="text-gray-100 text-lg max-w-2xl mx-auto">
+                Intuitive design meets powerful legal intelligence
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <div className="fade-in">
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20">
+                  <img src={caseLibraryInterface} alt="Legal Case Library - Browse landmark cases and precedents" className="w-full" />
+                </div>
+                <h3 className="text-xl font-bold mt-4 mb-2">Case Library</h3>
+                <p className="text-gray-300">Explore landmark cases and legal precedents</p>
+              </div>
+              
+              <div className="fade-in">
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20">
+                  <img src={statuteInterface2} alt="Statute Browser - Access and search legal statutes" className="w-full" />
+                </div>
+                <h3 className="text-xl font-bold mt-4 mb-2">Statute Browser</h3>
+                <p className="text-gray-300">Navigate statutes and legal documents with ease</p>
+              </div>
+            </div>
+          </div>
+        </section>
         
         <TestimonialsSection />
         
