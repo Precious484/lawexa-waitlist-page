@@ -73,29 +73,17 @@ const HeroSection = () => {
           </p>
 
           {/* CTA Button */}
-          <button 
-            className="btn-gold text-lg mb-8"
-            onClick={() => {
-              const waitlistSection = document.querySelector('#waitlist') || 
-                document.querySelector('section[class*="waitlist"]') ||
-                document.querySelector('form');
-              if (waitlistSection) {
-                waitlistSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            Join the Waitlist - Coming Soon
-          </button>
+          <button className="btn-gold text-lg mb-8" onClick={() => {
+          const waitlistSection = document.querySelector('#waitlist') || document.querySelector('section[class*="waitlist"]') || document.querySelector('form');
+          if (waitlistSection) {
+            waitlistSection.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }}>Request Access</button>
 
           {/* Trusted By Section */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3">
-            <div className="flex -space-x-1.5">
-              {avatars.map((avatar, index) => <img key={index} src={avatar} alt={`User ${index + 1}`} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-white bg-white" />)}
-            </div>
-            <p className="text-xs sm:text-sm text-gray-100 drop-shadow-md text-center flex items-center gap-1">
-              <span className="text-white font-semibold">Trusted by 15,000+</span> Active users
-            </p>
-          </div>
+          
         </div>
       </div>
     </section>;
