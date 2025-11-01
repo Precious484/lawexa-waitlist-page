@@ -52,15 +52,8 @@ const WaitlistForm = () => {
     <div className="max-w-2xl mx-auto fade-in">
       <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-large">
         <div className="text-center mb-6">
-          <div className="inline-block bg-primary/20 border border-primary/40 rounded-full px-4 py-2 mb-4">
-            <p className="text-primary font-bold text-sm">⚡ Only 1000 Slots Available</p>
-          </div>
           <h3 className="text-2xl font-bold text-white mb-2">Join the Waitlist</h3>
-          <p className="text-gray-100 mb-3">Be among the first to experience legal intelligence powered by AI.</p>
-          <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-6 py-3">
-            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-            <p className="text-white font-semibold text-lg">624 Seats Left</p>
-          </div>
+          <p className="text-gray-100">Be among the first to experience legal intelligence powered by AI.</p>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -92,11 +85,11 @@ const WaitlistForm = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              'Requesting...'
+              'Joining...'
             ) : (
               <>
                 <Mail className="mr-2 h-5 w-5" />
-                Request Your Invitation
+                Join the Waitlist
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </>
             )}
