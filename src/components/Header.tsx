@@ -23,9 +23,6 @@ const Header = () => {
   }, {
     name: 'About Us',
     href: '/about'
-  }, {
-    name: 'Blog',
-    href: '/blog'
   }];
   const productLinks = [{
     name: 'Lawexa Student',
@@ -37,7 +34,7 @@ const Header = () => {
     name: 'Lawexa API',
     href: '/products/api'
   }];
-  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-medium' : 'bg-transparent'}`}>
+  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-card shadow-medium' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -64,9 +61,9 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && <div className="md:hidden bg-white border-t border-border">
+        {isMenuOpen && <div className="md:hidden bg-card border-t border-border">
             <nav className="flex flex-col space-y-4 px-4 py-6">
-              {navLinks.map(link => <Link key={link.name} to={link.href} className={`transition-colors duration-300 ${isScrolled ? 'text-foreground hover:bg-gray-100' : 'text-gray-800 hover:bg-gray-100'}`} onClick={() => {
+              {navLinks.map(link => <Link key={link.name} to={link.href} className="transition-colors duration-300 text-foreground hover:bg-secondary p-2 rounded-lg" onClick={() => {
             setIsMenuOpen(false);
             setTimeout(() => window.scrollTo(0, 0), 100);
           }}>

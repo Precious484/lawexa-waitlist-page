@@ -80,25 +80,25 @@ const UseCases = () => {
         </section>
 
         {/* Main Use Cases */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Who Lawexa Is For</h2>
+            <div className="text-center mb-16 fade-in">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Who Lawexa Is For</h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                 Discover how Lawexa transforms legal work for different users
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
-              {useCases.map((useCase, index) => <Card key={index} className="p-8 card-hover border-2">
+              {useCases.map((useCase, index) => <Card key={index} className="p-8 card-hover border-2 bg-card fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="mb-4">{useCase.icon}</div>
-                  <h3 className="text-2xl font-bold mb-3">{useCase.title}</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-foreground">{useCase.title}</h3>
                   <p className="text-muted-foreground mb-6">{useCase.description}</p>
                   
                   <div className="space-y-3 mb-6">
                     {useCase.features.map((feature, idx) => <div key={idx} className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                        <p className="text-sm">{feature}</p>
+                        <p className="text-sm text-foreground">{feature}</p>
                       </div>)}
                   </div>
 
@@ -122,19 +122,19 @@ const UseCases = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {scenarios.map((scenario, index) => <Card key={index} className="p-6 bg-white card-hover">
+              {scenarios.map((scenario, index) => <Card key={index} className="p-6 bg-card card-hover border border-border fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0">{scenario.icon}</div>
                     <div>
-                      <h3 className="text-xl font-bold mb-3">{scenario.title}</h3>
+                      <h3 className="text-xl font-bold mb-3 text-foreground">{scenario.title}</h3>
                       <div className="space-y-3">
                         <div>
                           <p className="text-sm font-semibold text-muted-foreground mb-1">The Scenario:</p>
-                          <p className="text-sm">{scenario.scenario}</p>
+                          <p className="text-sm text-foreground">{scenario.scenario}</p>
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-primary mb-1">How Lawexa Helps:</p>
-                          <p className="text-sm">{scenario.solution}</p>
+                          <p className="text-sm text-foreground">{scenario.solution}</p>
                         </div>
                       </div>
                     </div>
@@ -213,9 +213,9 @@ const UseCases = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Legal Work?</h2>
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4 text-center fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Ready to Transform Your Legal Work?</h2>
             <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
               Join the waitlist and be among the first to experience the future of legal intelligence.
             </p>
