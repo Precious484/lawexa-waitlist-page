@@ -6,32 +6,32 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "Is Lawexa a replacement for a lawyer?",
-      answer: "No. Lawexa provides step-by-step legal information to help you know the law and understand legal documents. It is not legal advice. For complex matters, formal representation, or court proceedings, Lawexa connects you with a qualified lawyer near you and within your budget."
+      question: "When will Lawexa officially launch?",
+      answer: "We're planning to launch in the coming months! By joining the waitlist, you'll be among the first to know when we go live and get exclusive early access before the public launch."
     },
     {
-      question: "How accurate is Lawexa?",
-      answer: "Lawexa is built on comprehensive legal databases for high accuracy. However, law can be complex and jurisdiction-specific, so always verify important information and consult professionals for critical decisions."
+      question: "What happens after I join the waitlist?",
+      answer: "Once you join, you'll receive a confirmation email and regular updates about our progress. You'll also get exclusive perks like free access until launch, launch event invitations, and special discounts."
     },
     {
-      question: "What types of documents can I upload?",
-      answer: "Contracts, tenancy agreement, employment agreements, NDAs and most other legal documents including class notes, materials, slides in PDF, PPT, Docx, Word or image format."
+      question: "How many spots are available on the waitlist?",
+      answer: "We're limiting early access to 1,000 members to ensure the best experience. With only 624 spots remaining, we encourage you to join now to secure your place!"
     },
     {
-      question: "Can I cancel my subscription plan at any time?",
-      answer: "Yes, you can cancel your subscription at any time through your account settings. Your access will continue until the end of your current billing period."
+      question: "Is joining the waitlist free?",
+      answer: "Yes! Joining the waitlist is completely free, and you'll get free exclusive access to the app until our official launch."
     },
     {
-      question: "What is your refund policy?",
-      answer: "We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied with our service, contact our support team for a full refund."
+      question: "How can I move up the waitlist faster?",
+      answer: "Share Lawexa on Twitter, Instagram, or LinkedIn and tag us! You'll automatically move up the waitlist and increase your chances of winning prizes."
     },
     {
-      question: "Is Lawexa available outside Nigeria?",
-      answer: "Currently, Lawexa is optimized for Nigerian law and legal system. We're working on expanding to other African jurisdictions. Stay tuned for updates!"
+      question: "What are the benefits of being an early access member?",
+      answer: "Early members get free app access until launch, potential invitations to our Lagos launch event, huge subscription discounts (up to 1 year!), and chances to win prizes by sharing with peers."
     },
     {
-      question: "Is my information secure and confidential?",
-      answer: "Yes. We use enterprise-grade encryption, never share your documents or questions, and follow strict data protection protocols. Your privacy and confidentiality are our top priorities."
+      question: "Will my data be safe?",
+      answer: "Absolutely. We use enterprise-grade encryption and follow strict data protection protocols. Your information is secure, confidential, and will never be shared with third parties."
     }
   ];
 
@@ -40,11 +40,11 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+          <div className="text-center mb-16 fade-in">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in">
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -59,7 +59,8 @@ const FAQSection = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-soft hover:shadow-medium transition-all duration-300"
+                className="bg-card rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 fade-in hover-scale border border-border"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <button
                   onClick={() => toggleFAQ(index)}

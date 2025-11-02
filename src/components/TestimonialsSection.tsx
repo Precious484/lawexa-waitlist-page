@@ -95,10 +95,11 @@ const TestimonialsSection = () => {
         return 'bg-gray-100 text-gray-800';
     }
   };
-  return <section className="py-20 bg-slate-50">
+  return <section className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-16 fade-in">
+          <p className="text-primary text-lg font-semibold mb-2 animate-fade-in">Hear from some of our early Users</p>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in">
             <RollingNumber value={291} formatNumber={num => `${num.toLocaleString()}`} /> Slots Taken
           </h2>
           
@@ -119,7 +120,7 @@ const TestimonialsSection = () => {
                   onMouseEnter={() => setIsPaused(true)}
                   onMouseLeave={() => setIsPaused(false)}
                 >
-                  <div className="bg-white rounded-xl p-6 shadow-soft card-hover h-full">
+                  <div className="bg-card rounded-xl p-6 shadow-soft card-hover h-full border border-border">
                     {/* Type Badge */}
                     <div className="mb-4">
                       <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getTypeColor(testimonial.type)}`}>
@@ -128,7 +129,7 @@ const TestimonialsSection = () => {
                     </div>
 
                     {/* Quote */}
-                    <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                    <p className="text-foreground mb-6 text-lg leading-relaxed">
                       "{testimonial.quote}"
                     </p>
 
@@ -150,11 +151,11 @@ const TestimonialsSection = () => {
           </div>
 
           {/* Navigation Arrows */}
-          <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-medium hover:shadow-large transition-all duration-300">
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
+          <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-card rounded-full p-3 shadow-medium hover:shadow-large transition-all duration-300 hover-scale border border-border">
+            <ChevronLeft className="w-6 h-6 text-foreground" />
           </button>
-          <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-medium hover:shadow-large transition-all duration-300">
-            <ChevronRight className="w-6 h-6 text-gray-600" />
+          <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-card rounded-full p-3 shadow-medium hover:shadow-large transition-all duration-300 hover-scale border border-border">
+            <ChevronRight className="w-6 h-6 text-foreground" />
           </button>
 
           {/* Dots Indicator */}

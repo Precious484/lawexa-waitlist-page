@@ -8,7 +8,7 @@ import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import WaitlistForm from '@/components/WaitlistForm';
 import PerksSection from '@/components/PerksSection';
-import { Sparkles, Shield, Zap, Globe } from 'lucide-react';
+
 import caseLibraryInterface from '@/assets/case-library-interface.png';
 import statuteInterface1 from '@/assets/statute-interface-1.png';
 import statuteInterface2 from '@/assets/statute-interface-2.png';
@@ -66,41 +66,8 @@ const Index = () => {
         {/* Waitlist Form Section */}
         
 
-        {/* Features Highlight */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Before our Launch</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Be among the first to experience the future of legal intelligence
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {[{
-              icon: <Sparkles className="w-10 h-10 text-primary" />,
-              title: "AI-Powered",
-              description: "Advanced AI trained on legal documents and case law"
-            }, {
-              icon: <Shield className="w-10 h-10 text-primary" />,
-              title: "Secure & Private",
-              description: "Your data is encrypted and never shared"
-            }, {
-              icon: <Zap className="w-10 h-10 text-primary" />,
-              title: "Instant Answers",
-              description: "Get legal insights in seconds, not hours"
-            }, {
-              icon: <Globe className="w-10 h-10 text-primary" />,
-              title: "Always Available",
-              description: "24/7 access from any device, anywhere"
-            }].map((feature, index) => <div key={index} className="text-center fade-in">
-                  <div className="flex justify-center mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </div>)}
-            </div>
-          </div>
-        </section>
+        {/* Perks Section */}
+        <PerksSection />
 
         {/* App Interface Showcase */}
         <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white">
@@ -133,8 +100,6 @@ const Index = () => {
         </section>
         
         <TestimonialsSection />
-        
-        <PerksSection />
         
         <section id="faq">
           <FAQSection />
