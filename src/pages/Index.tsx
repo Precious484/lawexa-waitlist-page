@@ -11,6 +11,8 @@ import PerksSection from '@/components/PerksSection';
 import caseLibraryInterface from '@/assets/case-library-interface.png';
 import statuteInterface1 from '@/assets/statute-interface-1.png';
 import statuteInterface2 from '@/assets/statute-interface-2.png';
+import communityFoldersInterface from '@/assets/community-folders-interface.png';
+import statuteInterface from '@/assets/statute-interface.png';
 const Index = () => {
   useScrollAnimation();
   useEffect(() => {
@@ -78,21 +80,37 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              <div className="fade-in">
-                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+              <div className="fade-in animate-float">
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/40 transition-all duration-300">
                   <img src={caseLibraryInterface} alt="Legal Case Library - Browse landmark cases and precedents" className="w-full" />
                 </div>
                 <h3 className="text-xl font-bold mt-4 mb-2">Case Library</h3>
-                <p className="text-gray-300">Explore landmark cases and legal precedents</p>
+                <p className="text-gray-300 text-sm">Explore landmark cases and legal precedents</p>
               </div>
               
-              <div className="fade-in">
-                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20">
+              <div className="fade-in animate-float" style={{ animationDelay: '0.2s' }}>
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/40 transition-all duration-300">
+                  <img src={statuteInterface} alt="AI-Powered Legal Tutor - Get instant answers to legal questions" className="w-full" />
+                </div>
+                <h3 className="text-xl font-bold mt-4 mb-2">AI Legal Tutor</h3>
+                <p className="text-gray-300 text-sm">Get instant answers to complex legal questions</p>
+              </div>
+              
+              <div className="fade-in animate-float" style={{ animationDelay: '0.4s' }}>
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/40 transition-all duration-300">
                   <img src={statuteInterface2} alt="Statute Browser - Access and search legal statutes" className="w-full" />
                 </div>
                 <h3 className="text-xl font-bold mt-4 mb-2">Statute Browser</h3>
-                <p className="text-gray-300">Navigate statutes and legal documents with ease</p>
+                <p className="text-gray-300 text-sm">Navigate statutes and legal documents with ease</p>
+              </div>
+              
+              <div className="fade-in animate-float" style={{ animationDelay: '0.6s' }}>
+                <div className="rounded-lg overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/40 transition-all duration-300">
+                  <img src={communityFoldersInterface} alt="Community Folders - Share and discover legal research" className="w-full" />
+                </div>
+                <h3 className="text-xl font-bold mt-4 mb-2">Community Folders</h3>
+                <p className="text-gray-300 text-sm">Share research and collaborate with peers</p>
               </div>
             </div>
           </div>
