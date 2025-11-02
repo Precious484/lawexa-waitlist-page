@@ -8,7 +8,6 @@ import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import WaitlistForm from '@/components/WaitlistForm';
 import PerksSection from '@/components/PerksSection';
-
 import caseLibraryInterface from '@/assets/case-library-interface.png';
 import statuteInterface1 from '@/assets/statute-interface-1.png';
 import statuteInterface2 from '@/assets/statute-interface-2.png';
@@ -70,7 +69,7 @@ const Index = () => {
         <PerksSection />
 
         {/* App Interface Showcase */}
-        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white">
+        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white bg-gray-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience Lawexa's Powerful Interface</h2>
