@@ -10,6 +10,30 @@ import statuteInterface2 from '@/assets/statute-interface-2.png';
 const UseCases = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Trigger fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    const fadeElements = document.querySelectorAll('.fade-in');
+    fadeElements.forEach(el => observer.observe(el));
+    
+    // Make initial elements visible immediately
+    setTimeout(() => {
+      fadeElements.forEach(el => el.classList.add('visible'));
+    }, 100);
+    
+    return () => observer.disconnect();
   }, []);
 
   const userStories = [
@@ -75,14 +99,14 @@ const UseCases = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-br from-background via-background to-primary/10 overflow-hidden">
+        <section className="relative py-24 bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 text-white overflow-hidden">
           <div className="absolute inset-0 hero-grid"></div>
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center fade-in">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Real People. <span className="text-primary">Real Results.</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
                 Discover how Lawexa is transforming legal work for students, professionals, and everyday people across Africa.
               </p>
             </div>
@@ -184,15 +208,15 @@ const UseCases = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-primary/10">
-          <div className="container mx-auto px-4 text-center fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Write Your Own Success Story</h2>
-            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
+        <section className="py-20 bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Write Your Own Success Story</h2>
+            <p className="text-gray-200 text-lg mb-8 max-w-2xl mx-auto">
               Join thousands who are already transforming their legal work with Lawexa. Your journey starts here.
             </p>
             <Button 
               size="lg" 
-              className="text-lg px-8"
+              className="text-lg px-8 bg-primary hover:bg-primary/90 text-primary-foreground"
               onClick={() => {
                 window.location.href = '/';
                 setTimeout(() => {
