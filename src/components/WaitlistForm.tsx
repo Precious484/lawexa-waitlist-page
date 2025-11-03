@@ -70,7 +70,7 @@ const WaitlistForm = () => {
           </Button>
         </div>
         
-        <p className="text-center text-sm text-muted-foreground mt-6">💎 Early members get huge discounts • 🚀 Beta access to all features • 🎯 Exclusive Updates</p>
+        <p className="text-center text-sm text-muted-foreground mt-6">💎 Members get huge discounts • 🚀 Beta access to all features • 🎯 Exclusive Updates</p>
       </form>
     </div>;
 };
