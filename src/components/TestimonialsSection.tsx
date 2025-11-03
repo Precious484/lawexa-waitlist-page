@@ -96,7 +96,7 @@ const TestimonialsSection = () => {
   return <section className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 fade-in">
-          <p className="text-primary text-lg font-semibold mb-2 animate-fade-in">Hear from some of our early Users</p>
+          <p className="mb-2 animate-fade-in font-semibold text-lg text-zinc-900">Hear from some of our early Users</p>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in">
             <RollingNumber value={291} formatNumber={num => `${num.toLocaleString()}`} /> Slots Taken
           </h2>

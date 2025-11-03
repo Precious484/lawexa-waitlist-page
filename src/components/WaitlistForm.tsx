@@ -56,45 +56,21 @@ const WaitlistForm = () => {
         
         <div className="space-y-4">
           <div>
-            <Input
-              type="text"
-              placeholder="Your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="h-12 bg-background/50 border-border text-foreground placeholder:text-muted-foreground"
-              required
-            />
+            <Input type="text" placeholder="Your full name" value={name} onChange={e => setName(e.target.value)} className="h-12 bg-background/50 border-border text-foreground placeholder:text-muted-foreground" required />
           </div>
           
           <div>
-            <Input
-              type="email"
-              placeholder="Your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="h-12 bg-background/50 border-border text-foreground placeholder:text-muted-foreground"
-              required
-            />
+            <Input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-12 bg-background/50 border-border text-foreground placeholder:text-muted-foreground" required />
           </div>
           
-          <Button 
-            type="submit" 
-            className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              "Securing Your Spot..."
-            ) : (
-              <>
+          <Button type="submit" className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90" disabled={isLoading}>
+            {isLoading ? "Securing Your Spot..." : <>
                 Get Early Access <ArrowRight className="ml-2 h-5 w-5" />
-              </>
-            )}
+              </>}
           </Button>
         </div>
         
-        <p className="text-center text-sm text-muted-foreground mt-6">
-          💎 Early members get lifetime discounts • 🚀 Beta access to all features • 🎯 Priority support
-        </p>
+        <p className="text-center text-sm text-muted-foreground mt-6">💎 Early members get huge discounts • 🚀 Beta access to all features • 🎯 Exclusive Updates</p>
       </form>
     </div>;
 };
