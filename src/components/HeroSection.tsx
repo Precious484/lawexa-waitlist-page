@@ -68,8 +68,8 @@ const HeroSection = () => {
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4">
-            Get instant legal answers, understand contracts, and navigate legal matters with confidence. 
-            <span className="block mt-2 text-primary font-semibold">No Law Degree Required</span>
+            The AI legal companion transforming how Africa researches law. 
+            <span className="block mt-2 text-primary font-semibold">Join thousands getting early access.</span>
           </p>
 
           {/* CTA Button */}

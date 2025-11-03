@@ -43,7 +43,59 @@ const WaitlistForm = () => {
       </div>;
   }
   return <div className="max-w-2xl mx-auto fade-in">
-      
+      <form onSubmit={handleSubmit} className="bg-card/50 backdrop-blur-md border border-border rounded-2xl p-8 shadow-2xl">
+        <div className="text-center mb-8">
+          <h3 className="text-3xl font-bold text-foreground mb-3">
+            Join the Legal Revolution
+          </h3>
+          <p className="text-muted-foreground text-lg">
+            Be among the first to experience AI-powered legal research built for Africa. 
+            <span className="text-primary font-semibold"> Limited early access spots available.</span>
+          </p>
+        </div>
+        
+        <div className="space-y-4">
+          <div>
+            <Input
+              type="text"
+              placeholder="Your full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="h-12 bg-background/50 border-border text-foreground placeholder:text-muted-foreground"
+              required
+            />
+          </div>
+          
+          <div>
+            <Input
+              type="email"
+              placeholder="Your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="h-12 bg-background/50 border-border text-foreground placeholder:text-muted-foreground"
+              required
+            />
+          </div>
+          
+          <Button 
+            type="submit" 
+            className="w-full h-12 text-lg font-semibold bg-primary hover:bg-primary/90"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              "Securing Your Spot..."
+            ) : (
+              <>
+                Get Early Access <ArrowRight className="ml-2 h-5 w-5" />
+              </>
+            )}
+          </Button>
+        </div>
+        
+        <p className="text-center text-sm text-muted-foreground mt-6">
+          💎 Early members get lifetime discounts • 🚀 Beta access to all features • 🎯 Priority support
+        </p>
+      </form>
     </div>;
 };
 export default WaitlistForm;
