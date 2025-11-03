@@ -12,6 +12,7 @@ import caseLibraryInterface from '@/assets/case-library-interface.png';
 import statuteInterface1 from '@/assets/statute-interface-1.png';
 import statuteInterface2 from '@/assets/statute-interface-2.png';
 import communityFoldersInterface from '@/assets/community-folders-interface.png';
+import aiTutorChatInterface from '@/assets/ai-tutor-chat-interface.png';
 import statuteInterface from '@/assets/statute-interface.png';
 const Index = () => {
   useScrollAnimation();
@@ -98,7 +99,7 @@ const Index = () => {
               animationDelay: '0.15s'
             }}>
                 <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/60 transition-all duration-500 hover:scale-105 hover:shadow-primary/20">
-                  <img src={statuteInterface} alt="AI-Powered Legal Tutor - Get instant answers to legal questions" className="w-full h-auto" />
+                  <img src={aiTutorChatInterface} alt="AI-Powered Legal Tutor - Get instant answers to legal questions" className="w-full h-auto" />
                 </div>
                 <div className="mt-6">
                   <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">AI Legal Tutor</h3>
