@@ -76,14 +76,11 @@ const AboutUs = () => {
                   experienced firsthand the barriers that prevent ordinary Nigerians from understanding 
                   their legal rights and obligations.
                 </p>
-                <p className="text-xl leading-relaxed mb-6">Today, Lawexa serves over 15,000 users, saving them millions of naira in legal fees while empowering them with the knowledge they need to make informed decisions. 
-     
-We're on a mission to democratize legal knowledge across Africa, making professional legal intelligence accessible to students, professionals, and everyday people who deserve better access to justice.</p>
-                <p className="text-xl leading-relaxed">
-                  Today, Lawexa serves over 15,000 users across 130+ universities and countless 
-                  professionals, saving them millions of naira in legal fees while empowering them 
-                  with the knowledge they need to make informed decisions.
-                </p>
+                <p className="text-xl leading-relaxed mb-6">Our Journey starts in 2016, with the release of Nigeria's first legal case dictionary, Precious Caseapp changing how thousands of students interact with legal resources. We made cases easy. Today, we are on a mission to democratize legal knowledge to everyone; Lawyers, Students and everyday people who deserve better access to justice, because the Law should not be for lawyers alone but for anyone.
+
+
+We invite you to join us as we make law easy </p>
+                
               </div>
             </div>
           </div>
@@ -157,9 +154,7 @@ We're on a mission to democratize legal knowledge across Africa, making professi
         {/* Impact Section */}
         <section className="py-20 bg-lawexa-dark text-white bg-slate-950">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-              Our Impact
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">The Precious Caseapp Impact</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
               <div>
                 <div className="text-4xl md:text-6xl font-bold text-primary mb-2">
@@ -177,7 +172,7 @@ We're on a mission to democratize legal knowledge across Africa, making professi
                 <div className="text-4xl md:text-6xl font-bold text-primary mb-2">
                   <RollingNumber value={50} formatNumber={num => `₦${num}M+`} />
                 </div>
-                <p className="text-xl text-gray-300">Saved in Legal Fees</p>
+                
               </div>
             </div>
           </div>
