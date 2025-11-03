@@ -60,10 +60,8 @@ const TestimonialsSection = () => {
     avatar: avatarStudentMale
   }];
   const [isPaused, setIsPaused] = useState(false);
-
   useEffect(() => {
     if (isPaused) return;
-    
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % testimonials.length);
     }, 4000); // Continuous auto-scroll
@@ -105,7 +103,7 @@ const TestimonialsSection = () => {
           
           
           {/* University Carousel */}
-          <UniversityCarousel />
+          
         </div>
 
         {/* Testimonials Carousel */}
@@ -114,12 +112,7 @@ const TestimonialsSection = () => {
             <div className="flex transition-transform duration-500 ease-in-out" style={{
             transform: `translateX(-${currentSlide * (100 / 3)}%)`
           }}>
-              {testimonials.map((testimonial, index) => <div 
-                  key={index} 
-                  className="w-full md:w-1/3 flex-shrink-0 px-4"
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                >
+              {testimonials.map((testimonial, index) => <div key={index} className="w-full md:w-1/3 flex-shrink-0 px-4" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
                   <div className="bg-card rounded-xl p-6 shadow-soft card-hover h-full border border-border">
                     {/* Type Badge */}
                     <div className="mb-4">
