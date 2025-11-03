@@ -65,17 +65,21 @@ const Index = () => {
         <HeroSection />
         
         {/* Waitlist Form Section */}
-        
+        <section id="waitlist" className="py-20 bg-gradient-to-br from-primary/5 via-background to-primary/10">
+          <div className="container mx-auto px-4">
+            <WaitlistForm />
+          </div>
+        </section>
 
         {/* Perks Section */}
         <PerksSection />
 
         {/* App Interface Showcase */}
-        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white bg-zinc-900">
-          <div className="container mx-auto px-4 bg-zinc-900">
+        <section className="py-20 bg-gradient-to-br from-background via-card to-primary/5">
+          <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">See Lawexa in Action</h2>
-              <p className="text-gray-100 text-xl max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in text-foreground">See Lawexa in Action</h2>
+              <p className="text-muted-foreground text-xl max-w-3xl mx-auto">
                 The future of legal research is here. Explore what makes Lawexa different.
               </p>
             </div>
@@ -86,8 +90,8 @@ const Index = () => {
                   <img src={caseLibraryInterface} alt="Legal Case Library - Browse landmark cases and precedents" className="w-full h-auto" />
                 </div>
                 <div className="mt-6">
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Case Library</h3>
-                  <p className="text-gray-200 text-base leading-relaxed">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">Case Library</h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     Dive into thousands of landmark cases at your fingertips. Every precedent, every ruling, searchable in seconds. 
                     <span className="text-primary font-semibold"> Your next breakthrough starts here.</span>
                   </p>
@@ -101,8 +105,8 @@ const Index = () => {
                   <img src={statuteInterface1} alt="AI-Powered Legal Tutor - Get instant answers to legal questions" className="w-full h-auto" />
                 </div>
                 <div className="mt-6">
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">AI Legal Tutor</h3>
-                  <p className="text-gray-200 text-base leading-relaxed">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">AI Legal Tutor</h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     Ask anything. Get answers that matter. Trained on African legal systems, our AI understands context like never before. 
                     <span className="text-primary font-semibold"> It's like having a senior lawyer on speed dial.</span>
                   </p>
@@ -116,8 +120,8 @@ const Index = () => {
                   <img src={statuteInterface2} alt="Statute Browser - Access and search legal statutes" className="w-full h-auto" />
                 </div>
                 <div className="mt-6">
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Statute Browser</h3>
-                  <p className="text-gray-200 text-base leading-relaxed">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">Statute Browser</h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     Stop drowning in legal jargon. Navigate complex legislation with clarity and speed. 
                     <span className="text-primary font-semibold"> Find what you need, when you need it.</span>
                   </p>
@@ -131,8 +135,8 @@ const Index = () => {
                   <img src={communityFoldersInterface} alt="Community Folders - Share and discover legal research" className="w-full h-auto" />
                 </div>
                 <div className="mt-6">
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Community Folders</h3>
-                  <p className="text-gray-200 text-base leading-relaxed">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">Community Folders</h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
                     Your peers are winning cases with insights you haven't seen yet. Discover shared research, collaborate on strategies. 
                     <span className="text-primary font-semibold"> Together, we're stronger.</span>
                   </p>

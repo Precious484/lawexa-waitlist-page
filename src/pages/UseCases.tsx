@@ -75,14 +75,14 @@ const UseCases = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white overflow-hidden">
+        <section className="relative py-24 bg-gradient-to-br from-background via-background to-primary/10 overflow-hidden">
           <div className="absolute inset-0 hero-grid"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center fade-in">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
                 Real People. <span className="text-primary">Real Results.</span>
               </h1>
-              <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Discover how Lawexa is transforming legal work for students, professionals, and everyday people across Africa.
               </p>
             </div>
@@ -94,7 +94,7 @@ const UseCases = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
               {impactMetrics.map((metric, index) => (
-                <div key={index} className="text-center fade-in animate-pulse-glow" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div key={index} className="text-center fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="flex justify-center mb-3 text-primary">
                     {metric.icon}
                   </div>
@@ -118,11 +118,11 @@ const UseCases = () => {
 
             <div className="space-y-24">
               {userStories.map((story, index) => (
-                <div key={index} className={`fade-in grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`} style={{ animationDelay: `${index * 0.2}s` }}>
+                <div key={index} className="fade-in grid lg:grid-cols-2 gap-12 items-center" style={{ animationDelay: `${index * 0.2}s` }}>
                   {/* Story Content */}
                   <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-primary/10 rounded-xl animate-pulse-glow">
+                      <div className="p-3 bg-primary/10 rounded-xl">
                         {story.icon}
                       </div>
                       <div>
@@ -184,16 +184,24 @@ const UseCases = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white">
+        <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-primary/10">
           <div className="container mx-auto px-4 text-center fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Write Your Own Success Story</h2>
-            <p className="text-gray-100 text-lg mb-8 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Write Your Own Success Story</h2>
+            <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
               Join thousands who are already transforming their legal work with Lawexa. Your journey starts here.
             </p>
             <Button 
               size="lg" 
-              className="text-lg px-8 animate-shimmer"
-              onClick={() => window.location.href = '/#waitlist'}
+              className="text-lg px-8"
+              onClick={() => {
+                window.location.href = '/';
+                setTimeout(() => {
+                  const waitlistSection = document.querySelector('#waitlist') || document.querySelector('form');
+                  if (waitlistSection) {
+                    waitlistSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }, 100);
+              }}
             >
               Request Your Invitation <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
