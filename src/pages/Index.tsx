@@ -71,8 +71,8 @@ const Index = () => {
         <PerksSection />
 
         {/* App Interface Showcase */}
-        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white">
-          <div className="container mx-auto px-4">
+        <section className="py-20 bg-gradient-to-br from-lawexa-dark via-lawexa-dark to-lawexa-brown-glow text-white bg-zinc-900">
+          <div className="container mx-auto px-4 bg-zinc-900">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">See Lawexa in Action</h2>
               <p className="text-gray-100 text-xl max-w-3xl mx-auto">
@@ -94,7 +94,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="fade-in animate-float group" style={{ animationDelay: '0.15s' }}>
+              <div className="fade-in animate-float group" style={{
+              animationDelay: '0.15s'
+            }}>
                 <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/60 transition-all duration-500 hover:scale-105 hover:shadow-primary/20">
                   <img src={statuteInterface} alt="AI-Powered Legal Tutor - Get instant answers to legal questions" className="w-full h-auto" />
                 </div>
@@ -107,7 +109,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="fade-in animate-float group" style={{ animationDelay: '0.3s' }}>
+              <div className="fade-in animate-float group" style={{
+              animationDelay: '0.3s'
+            }}>
                 <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/60 transition-all duration-500 hover:scale-105 hover:shadow-primary/20">
                   <img src={statuteInterface2} alt="Statute Browser - Access and search legal statutes" className="w-full h-auto" />
                 </div>
@@ -120,7 +124,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="fade-in animate-float group" style={{ animationDelay: '0.45s' }}>
+              <div className="fade-in animate-float group" style={{
+              animationDelay: '0.45s'
+            }}>
                 <div className="rounded-2xl overflow-hidden shadow-2xl border border-primary/20 hover:border-primary/60 transition-all duration-500 hover:scale-105 hover:shadow-primary/20">
                   <img src={communityFoldersInterface} alt="Community Folders - Share and discover legal research" className="w-full h-auto" />
                 </div>
