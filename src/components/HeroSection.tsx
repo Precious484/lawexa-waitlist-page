@@ -82,7 +82,7 @@ const HeroSection = () => {
               behavior: 'smooth'
             });
           }
-        }}>⚡ Get Early Access</button>
+        }}>Join the Waitlist</button>
 
           {/* Trusted By Section */}
           
