@@ -112,10 +112,7 @@ const UseCases = () => {
         {/* User Stories */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16 fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Student Success Stories</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Your classmates aren't smarter than you. They're just using Lawexa. Here's how real students transformed their grades and understanding.</p>
-            </div>
+            
 
             <div className="space-y-24">
               {userStories.map((story, index) => <div key={index} className="fade-in grid lg:grid-cols-2 gap-12 items-center" style={{
