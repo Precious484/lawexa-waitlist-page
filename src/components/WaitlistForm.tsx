@@ -60,25 +60,14 @@ const WaitlistForm = () => {
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-3 mb-8 animate-fade-in">
               <Sparkles className="w-5 h-5 text-primary animate-pulse" />
-              <span className="text-sm font-semibold text-foreground">Join 1,247+ Students Already Inside</span>
+              <span className="text-sm font-semibold text-foreground">AI Legal Assistant that makes Law easy</span>
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Your classmates aren't <br />
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-                smarter than you.
-              </span>
-            </h1>
             
-            <p className="text-3xl lg:text-4xl font-bold text-foreground/90 mb-4">
-              They're just using Lawexa.
-            </p>
             
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-              The AI legal assistant that makes law easy. <br />
-              Ask any legal question. Search any case or statute. <br />
-              Understand complex concepts and Crush exams.
-            </p>
+            
+            
+            
             
             <div className="bg-gradient-to-br from-card to-muted/30 border-2 border-primary/20 rounded-3xl p-10 max-w-2xl mx-auto shadow-gold hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
               <div className="flex items-center justify-center gap-3 mb-8">
@@ -91,20 +80,8 @@ const WaitlistForm = () => {
               </p>
               
               <form onSubmit={handleSubmit} className="space-y-5">
-                <Input 
-                  type="email" 
-                  placeholder="📩 Enter your email address" 
-                  value={email} 
-                  onChange={e => setEmail(e.target.value)} 
-                  className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border focus:border-primary transition-all duration-300 rounded-xl" 
-                  required 
-                />
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full h-16 text-xl font-bold shadow-gold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]" 
-                  disabled={isLoading}
-                >
+                <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border focus:border-primary transition-all duration-300 rounded-xl" required />
+                <Button type="submit" size="lg" className="w-full h-16 text-xl font-bold shadow-gold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]" disabled={isLoading}>
                   {isLoading ? "Joining..." : <>
                       <Zap className="mr-2 h-6 w-6" />
                       Get Early Access
@@ -414,20 +391,8 @@ const WaitlistForm = () => {
                 </h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <Input 
-                    type="email" 
-                    placeholder="📩 Enter your email address" 
-                    value={email} 
-                    onChange={e => setEmail(e.target.value)} 
-                    className="h-16 text-xl bg-background/80 backdrop-blur-sm border-2 border-primary/30 focus:border-primary transition-all duration-300 rounded-xl shadow-lg" 
-                    required 
-                  />
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full h-16 text-xl font-bold shadow-gold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]" 
-                    disabled={isLoading}
-                  >
+                  <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-16 text-xl bg-background/80 backdrop-blur-sm border-2 border-primary/30 focus:border-primary transition-all duration-300 rounded-xl shadow-lg" required />
+                  <Button type="submit" size="lg" className="w-full h-16 text-xl font-bold shadow-gold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]" disabled={isLoading}>
                     {isLoading ? "Joining..." : <>
                         <Zap className="mr-2 h-7 w-7" />
                         Get Early Access — Limited Spots
