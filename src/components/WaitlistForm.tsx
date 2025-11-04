@@ -5,13 +5,13 @@ import { CheckCircle, Zap, Scale, Lightbulb, Compass, TrendingUp, Sparkles, User
 import { useToast } from '@/hooks/use-toast';
 import caseLibraryInterface from '@/assets/case-library-interface.png';
 import communityFoldersInterface from '@/assets/community-folders-interface.png';
-
 const WaitlistForm = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
@@ -23,7 +23,6 @@ const WaitlistForm = () => {
       return;
     }
     setIsLoading(true);
-
     setTimeout(() => {
       setIsSubmitted(true);
       setIsLoading(false);
@@ -33,10 +32,8 @@ const WaitlistForm = () => {
       });
     }, 1000);
   };
-
   if (isSubmitted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-background to-primary/5 py-20">
+    return <div className="min-h-screen bg-gradient-to-b from-background to-primary/5 py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center bg-card border border-border rounded-3xl p-12">
             <CheckCircle className="w-20 h-20 text-primary mx-auto mb-6" />
@@ -46,57 +43,31 @@ const WaitlistForm = () => {
             </p>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5">
+  return <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5">
       {/* Hero Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Your classmates aren't smarter than you.<br />
-              <span className="text-primary">They're just using Lawexa.</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground mb-4">
-              The AI legal assistant that makes law easy.
-            </p>
-            <p className="text-lg text-muted-foreground mb-12">
-              Ask any legal question. Search any case or statute. Understand complex concepts and Crush exams.
-            </p>
+            
+            
+            
             
             <div className="bg-card border border-primary/20 rounded-2xl p-8 mb-8 max-w-2xl mx-auto">
               <div className="flex items-center justify-center gap-2 mb-6">
                 <Sparkles className="w-6 h-6 text-primary" />
                 <h3 className="text-2xl font-bold text-foreground">Public Launch Coming Soon</h3>
               </div>
-              <p className="text-muted-foreground mb-6">
-                Click below to join <span className="text-primary font-bold">1,247+ students</span> already on early access.
-              </p>
+              
               
               <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  type="email"
-                  placeholder="📩 Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-14 text-lg bg-background border-border"
-                  required
-                />
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full h-14 text-lg font-bold"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Joining..." : (
-                    <>
+                <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-14 text-lg bg-background border-border" required />
+                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold" disabled={isLoading}>
+                  {isLoading ? "Joining..." : <>
                       <Zap className="mr-2 h-5 w-5" />
                       Get Early Access
-                    </>
-                  )}
+                    </>}
                 </Button>
               </form>
             </div>
@@ -108,9 +79,7 @@ const WaitlistForm = () => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Why Students Love Lawexa
-            </h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">What is Lawexa Student</h2>
             <p className="text-xl text-muted-foreground">
               Lawexa isn't just another "legal app."<br />
               It's the secret weapon that turns struggling students into top performers.
@@ -144,11 +113,7 @@ const WaitlistForm = () => {
                 </p>
               </div>
               <div className="order-first lg:order-last">
-                <img 
-                  src={caseLibraryInterface} 
-                  alt="Case search interface" 
-                  className="rounded-2xl shadow-2xl border border-border"
-                />
+                <img src={caseLibraryInterface} alt="Case search interface" className="rounded-2xl shadow-2xl border border-border" />
               </div>
             </div>
           </div>
@@ -157,11 +122,7 @@ const WaitlistForm = () => {
           <div className="max-w-6xl mx-auto mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <img 
-                  src={caseLibraryInterface} 
-                  alt="AI tutor chat interface" 
-                  className="rounded-2xl shadow-2xl border border-border"
-                />
+                <img src={caseLibraryInterface} alt="AI tutor chat interface" className="rounded-2xl shadow-2xl border border-border" />
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -236,11 +197,7 @@ const WaitlistForm = () => {
                 </div>
               </div>
               <div className="order-first lg:order-last">
-                <img 
-                  src={communityFoldersInterface} 
-                  alt="Community folders interface" 
-                  className="rounded-2xl shadow-2xl border border-border"
-                />
+                <img src={communityFoldersInterface} alt="Community folders interface" className="rounded-2xl shadow-2xl border border-border" />
               </div>
             </div>
           </div>
@@ -249,11 +206,7 @@ const WaitlistForm = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <img 
-                  src={communityFoldersInterface} 
-                  alt="Trending feed interface" 
-                  className="rounded-2xl shadow-2xl border border-border"
-                />
+                <img src={communityFoldersInterface} alt="Trending feed interface" className="rounded-2xl shadow-2xl border border-border" />
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -390,34 +343,18 @@ const WaitlistForm = () => {
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  type="email"
-                  placeholder="📩 Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-14 text-lg bg-background border-border"
-                  required
-                />
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full h-14 text-lg font-bold"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Joining..." : (
-                    <>
+                <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-14 text-lg bg-background border-border" required />
+                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold" disabled={isLoading}>
+                  {isLoading ? "Joining..." : <>
                       <Zap className="mr-2 h-5 w-5" />
                       Get Early Access — Limited Spots
-                    </>
-                  )}
+                    </>}
                 </Button>
               </form>
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default WaitlistForm;
