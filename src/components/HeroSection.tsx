@@ -71,7 +71,7 @@ const HeroSection = () => {
           
 
           <p className="text-sm sm:text-base text-gray-300 mb-6 px-4">
-            Click below to join <span className="font-bold text-primary">1,247+ students</span> already on early access.
+            Click below to join <span className="font-bold text-primary">1,247+ law students</span> already on early access.
           </p>
 
           {/* CTA Button */}
