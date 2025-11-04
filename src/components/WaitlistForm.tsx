@@ -72,7 +72,7 @@ const WaitlistForm = () => {
             <div className="bg-gradient-to-br from-card to-muted/30 border-2 border-primary/20 rounded-3xl p-10 max-w-2xl mx-auto shadow-gold hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
               <div className="flex items-center justify-center gap-3 mb-8">
                 <Sparkles className="w-7 h-7 text-primary animate-pulse" />
-                <h3 className="text-3xl font-bold text-foreground">Public Launch Coming Soon</h3>
+                <h3 className="text-3xl font-bold text-foreground">We are Launching Soon</h3>
               </div>
               
               <p className="text-muted-foreground text-lg mb-8">Ask any legal question. Find any case. Ace any law exam</p>
