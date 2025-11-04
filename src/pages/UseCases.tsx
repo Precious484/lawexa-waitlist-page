@@ -34,60 +34,60 @@ const UseCases = () => {
   }, []);
   const userStories = [{
     icon: <GraduationCap className="w-16 h-16 text-primary" />,
-    category: "Law Student",
-    name: "Sarah's Journey to Top Grades",
-    problem: "Sarah struggled with understanding complex case law and spent countless hours in the library, often feeling overwhelmed by dense legal texts and competing deadlines.",
-    solution: "With Lawexa's AI tutor, Sarah now breaks down complex cases in minutes instead of hours. She uses the intelligent case summaries to grasp key principles quickly, then dives deeper with contextual explanations.",
-    results: ["Improved grades from B+ to A- average", "Reduced study time by 40%", "Gained confidence in class discussions", "Built comprehensive case notes library"],
-    quote: "Lawexa didn't just help me pass my exams—it helped me truly understand the law. I went from struggling with case analysis to leading study groups.",
+    category: "200L Student - UNILAG",
+    name: "Ibrahim's Breakthrough",
+    problem: "Ibrahim was struggling to keep up with Constitutional Law. Missing just two classes put him weeks behind, and he couldn't understand the complex Supreme Court decisions everyone was discussing.",
+    solution: "With Lawexa's trending feed and community folders, Ibrahim caught up in days. He found a Constitutional Law folder with all the cases his class covered, plus AI explanations that made sense. The trending section showed him exactly what was important.",
+    results: ["Caught up on 3 weeks of missed material in 4 days", "Went from failing to scoring B+ on midterm", "Now contributes actively in class discussions", "Created his own study folder that 50+ students use"],
+    quote: "Found a Constitutional Law folder with everything I needed. Saved me 10 hours of research. I was lost before Lawexa—now I'm helping others.",
     image: caseLibraryInterface,
     stats: {
-      value: "40%",
+      value: "10hrs",
+      label: "Research Saved"
+    }
+  }, {
+    icon: <GraduationCap className="w-16 h-16 text-primary" />,
+    category: "300L Student - UNILAG",
+    name: "Kehinde's Class Edge",
+    problem: "Kehinde would occasionally miss classes and struggled to know what was actually important. She spent hours searching for cases only to find out they weren't relevant to her exam.",
+    solution: "Now Kehinde opens Lawexa's trending feed every morning. She sees exactly what cases her classmates are reading and what topics are hot. Even when she misses class, she's never behind because Lawexa shows her what matters.",
+    results: ["Always knows what's trending in her class", "Reduced study time by 35%", "Improved from B to A- average", "Never misses important case law updates"],
+    quote: "I open Lawexa and boom—the case we just covered is right there with explanations. Life saver. My classmates ask me for notes now.",
+    image: statuteInterface2,
+    stats: {
+      value: "35%",
       label: "Time Saved"
     }
   }, {
-    icon: <Briefcase className="w-16 h-16 text-primary" />,
-    category: "Legal Professional",
-    name: "David's Practice Transformation",
-    problem: "David, a young attorney, was drowning in billable hours spent on basic legal research and contract reviews, leaving little time for strategic client work.",
-    solution: "Lawexa became David's research assistant—quickly finding relevant precedents, drafting initial contract clauses, and flagging potential legal issues for review.",
-    results: ["Freed up 10+ hours weekly for client work", "Increased billable efficiency by 60%", "Improved client satisfaction scores", "Expanded practice to take on more cases"],
-    quote: "Lawexa handles the routine research while I focus on strategy and client relationships. My practice has grown 30% without hiring additional staff.",
-    image: statuteInterface2,
-    stats: {
-      value: "10+",
-      label: "Hours Saved Weekly"
-    }
-  }, {
-    icon: <Users className="w-16 h-16 text-primary" />,
-    category: "Business Owner",
-    name: "Michael's Confident Decisions",
-    problem: "Michael was facing mounting legal costs every time he needed to review a vendor contract or understand employment obligations for his growing team.",
-    solution: "Now Michael uses Lawexa to review contracts before meetings with his lawyer, understand his legal obligations, and make informed decisions quickly without racking up consultation fees.",
-    results: ["Reduced legal consultation costs by 70%", "Faster contract negotiations", "Better understanding of business obligations", "Prevented costly legal mistakes"],
-    quote: "I used to be afraid of anything legal. Lawexa explained my lease agreement so clearly that I negotiated better terms and saved $15,000 annually.",
+    icon: <GraduationCap className="w-16 h-16 text-primary" />,
+    category: "100L Student - Baze University",
+    name: "Amara's Confidence Builder",
+    problem: "Amara felt overwhelmed in her first year. The legal terminology was confusing, cases seemed impossible to understand, and she was afraid to ask 'stupid questions' in class.",
+    solution: "Lawexa became Amara's private tutor. She could ask anything without judgment—'What does ratio decidendi mean?' or 'Explain Donoghue v Stevenson like I'm 5.' The AI broke down complex concepts into plain English with relatable examples.",
+    results: ["Built confidence in legal reasoning", "Understands complex concepts without memorizing", "Actively participates in class now", "Scored highest in her tutorial group"],
+    quote: "Stop memorizing. Start mastering. Lawexa explains tough concepts in plain English. I went from scared to confident in one semester.",
     image: statuteInterface1,
     stats: {
-      value: "70%",
-      label: "Cost Reduction"
+      value: "#1",
+      label: "In Tutorial Group"
     }
   }];
   const impactMetrics = [{
-    icon: <Clock className="w-8 h-8" />,
-    value: "10M+",
-    label: "Hours Saved"
+    icon: <GraduationCap className="w-8 h-8" />,
+    value: "1,247+",
+    label: "Students Using Lawexa"
   }, {
     icon: <Award className="w-8 h-8" />,
-    value: "95%",
-    label: "User Satisfaction"
+    value: "A-",
+    label: "Average Grade Boost"
   }, {
-    icon: <TrendingUp className="w-8 h-8" />,
-    value: "40%",
-    label: "Productivity Boost"
+    icon: <Clock className="w-8 h-8" />,
+    value: "35%",
+    label: "Time Saved Studying"
   }, {
     icon: <CheckCircle2 className="w-8 h-8" />,
-    value: "50K+",
-    label: "Cases Analyzed"
+    value: "20K+",
+    label: "Cases Searched Daily"
   }];
   return <div className="min-h-screen bg-background">
       <Header />
@@ -99,9 +99,9 @@ const UseCases = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Real People. <span className="text-primary">Real Results.</span>
+                Real Students. <span className="text-primary">Real Transformations.</span>
               </h1>
-              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">Discover how Lawexa is transforming legal education for students, professionals, and guidance for everyday people.</p>
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">See how law students across Nigeria are using Lawexa to crush exams, save time, and actually understand the law.</p>
             </div>
           </div>
         </section>
@@ -113,8 +113,8 @@ const UseCases = () => {
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">User Stories</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Six months ago, we put out a Beta version of Lawexa for you all to try and the feedback so far has been amazing </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Student Success Stories</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Your classmates aren't smarter than you. They're just using Lawexa. Here's how real students transformed their grades and understanding.</p>
             </div>
 
             <div className="space-y-24">
@@ -181,8 +181,8 @@ const UseCases = () => {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Share Your Lawexa Story</h2>
-            <p className="text-gray-200 text-lg mb-8 max-w-2xl mx-auto">Join thousands who are already meeting their legal needs with Lawexa. Your journey starts here.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Join 1,247+ Top Students?</h2>
+            <p className="text-gray-200 text-lg mb-8 max-w-2xl mx-auto">Stop struggling alone. Start crushing exams with the AI legal assistant built for Nigerian law students.</p>
             <Button size="lg" className="text-lg px-8 bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => {
             window.location.href = '/';
             setTimeout(() => {
