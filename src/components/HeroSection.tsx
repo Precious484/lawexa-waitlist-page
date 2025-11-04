@@ -57,30 +57,39 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 text-center z-10 relative">
         <div className="max-w-4xl mx-auto fade-in">
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 drop-shadow-lg px-4">
-            <span className="text-primary">Legal Intelligence</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg px-4">
+            <span className="text-white">Your classmates aren't smarter than you.</span>
             <br />
-            <span className="text-primary">For </span>
-            <span className="inline-block min-w-[150px] sm:min-w-[200px] text-left">
-              <span className="animated-underline active">{currentWord}</span>
-            </span>
+            <span className="text-primary">They're just using Lawexa.</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4">
-            The AI legal companion transforming how Africa researches law. 
-            <span className="block mt-2 text-primary font-semibold">Join thousands getting early access.</span>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-100 mb-3 sm:mb-4 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-4 font-semibold">
+            The AI legal assistant that makes law easy.
+          </p>
+
+          <p className="text-base sm:text-lg text-gray-200 mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed px-4">
+            Ask any legal question. Search any case or statute. Understand complex concepts and Crush exams.
+          </p>
+
+          <div className="flex items-center justify-center gap-2 mb-6 sm:mb-8">
+            <span className="text-2xl">🚀</span>
+            <span className="text-base sm:text-lg text-primary font-bold">Public Launch Coming Soon</span>
+          </div>
+
+          <p className="text-sm sm:text-base text-gray-300 mb-6 px-4">
+            Click below to join <span className="font-bold text-primary">1,247+ students</span> already on early access.
           </p>
 
           {/* CTA Button */}
-          <button className="btn-gold text-lg mb-8" onClick={() => {
+          <button className="btn-gold text-lg mb-8 px-8 py-4" onClick={() => {
           const waitlistSection = document.querySelector('#waitlist') || document.querySelector('section[class*="waitlist"]') || document.querySelector('form');
           if (waitlistSection) {
             waitlistSection.scrollIntoView({
               behavior: 'smooth'
             });
           }
-        }}>Request Early Access</button>
+        }}>⚡ Get Early Access</button>
 
           {/* Trusted By Section */}
           
