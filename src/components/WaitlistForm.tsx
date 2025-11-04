@@ -253,20 +253,7 @@ const WaitlistForm = () => {
                 <p className="text-xl text-muted-foreground leading-relaxed">
                   See what your classmates are reading. <span className="text-primary font-bold">Right now</span> with:
                 </p>
-                <ul className="space-y-5">
-                  <li className="flex items-start gap-4 bg-gradient-to-br from-card to-muted/30 border border-primary/10 rounded-xl p-5 hover:scale-[1.02] transition-transform duration-300">
-                    <span className="text-3xl">📊</span>
-                    <span className="text-foreground text-lg font-semibold">Trending cases</span>
-                  </li>
-                  <li className="flex items-start gap-4 bg-gradient-to-br from-card to-muted/30 border border-primary/10 rounded-xl p-5 hover:scale-[1.02] transition-transform duration-300">
-                    <span className="text-3xl">🔥</span>
-                    <span className="text-foreground text-lg font-semibold">Trending topics in your class</span>
-                  </li>
-                  <li className="flex items-start gap-4 bg-gradient-to-br from-card to-muted/30 border border-primary/10 rounded-xl p-5 hover:scale-[1.02] transition-transform duration-300">
-                    <span className="text-3xl">📚</span>
-                    <span className="text-foreground text-lg font-semibold">Popular study folders</span>
-                  </li>
-                </ul>
+                
                 <div className="bg-primary/5 border-l-4 border-primary rounded-r-xl p-6 space-y-3">
                   <p className="text-xl text-foreground font-bold">
                     Always know what's important. Never miss what matters.
