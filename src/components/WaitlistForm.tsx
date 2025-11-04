@@ -75,9 +75,8 @@ const WaitlistForm = () => {
                 <h3 className="text-3xl font-bold text-foreground">Public Launch Coming Soon</h3>
               </div>
               
-              <p className="text-muted-foreground text-lg mb-8">
-                Click below to join 1,247+ students already on early access.
-              </p>
+              <p className="text-muted-foreground text-lg mb-8">Ask any legal question, Understand complex to any case, take a quiz 
+ Ace your Exams</p>
               
               <form onSubmit={handleSubmit} className="space-y-5">
                 <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border focus:border-primary transition-all duration-300 rounded-xl" required />
