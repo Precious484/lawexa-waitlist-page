@@ -31,7 +31,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl mb-12 px-4 font-light text-gray-400 md:text-xl">Understand any topic. Find any case. Ace every exam.</p>
+          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand any topic. Find any case. Ace every exam.</p>
 
           {/* Email Signup Form */}
           <div className="max-w-2xl mx-auto mb-6 px-4">
