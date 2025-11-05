@@ -31,26 +31,13 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 mb-12 px-4 font-light">
-            Understand any topic. Find any case. Ace every exam.
-          </p>
+          <p className="text-xl sm:text-2xl mb-12 px-4 font-light text-gray-400 md:text-xl">Understand any topic. Find any case. Ace every exam.</p>
 
           {/* Email Signup Form */}
           <div className="max-w-2xl mx-auto mb-6 px-4">
             <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg"
-              />
-              <Button 
-                size="lg"
-                className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform"
-              >
-                Join Early Access
-              </Button>
+              <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg" />
+              <Button size="lg" className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform">Get Early Access</Button>
             </div>
             <p className="text-sm text-gray-300 mt-4 text-center">
               Join <span className="font-bold text-primary">1,247+ law students</span> already on early access.

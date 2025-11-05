@@ -15,14 +15,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const [slotsLeft, setSlotsLeft] = useState(253);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setSlotsLeft(prev => Math.max(100, prev - 1));
     }, 8000); // Decrease every 8 seconds
     return () => clearInterval(interval);
   }, []);
-
   const navLinks = [{
     name: 'Home',
     href: '/'
@@ -46,11 +44,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map(link => <Link key={link.name} to={link.href} className={`transition-colors duration-300 relative ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-gray-300'} ${window.location.pathname === link.href ? 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary' : ''}`} onClick={() => setTimeout(() => window.scrollTo(0, 0), 100)}>
-                {link.name}
-              </Link>)}
-          </nav>
+          
 
           {/* Desktop Counter */}
           <div className="hidden md:flex items-center space-x-4">
@@ -61,7 +55,7 @@ const Header = () => {
                 </span>
                 <span className="text-sm text-muted-foreground font-medium">/ 1,500</span>
               </div>
-              <span className="text-sm text-foreground font-medium">slots left</span>
+              
             </div>
           </div>
 
