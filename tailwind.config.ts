@@ -92,6 +92,11 @@ export default {
           "0%": { width: "0" },
           "100%": { width: "100%" }
         },
+        "flip": {
+          "0%": { transform: "rotateX(0deg)" },
+          "50%": { transform: "rotateX(90deg)" },
+          "100%": { transform: "rotateX(0deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -101,6 +106,7 @@ export default {
         "glow-pulse": "glow-pulse 8s ease-in-out infinite",
         "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
         "typewriter": "typewriter 3s steps(20) infinite",
+        "flip": "flip 0.6s ease-in-out",
       },
       boxShadow: {
         "soft": "var(--shadow-soft)",

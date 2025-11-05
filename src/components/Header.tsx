@@ -48,17 +48,11 @@ const Header = () => {
 
           {/* Desktop Counter */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-primary/50 to-primary rounded-full opacity-30 blur group-hover:opacity-50 transition duration-300"></div>
-              <div className="relative flex items-center gap-3 bg-gradient-to-br from-card to-muted/30 border-2 border-primary/20 rounded-full px-8 py-3 shadow-gold hover:shadow-2xl transition-all duration-300">
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl font-bold text-primary tabular-nums transition-all duration-500 animate-pulse">
-                    {slotsLeft}
-                  </span>
-                  <span className="text-base text-muted-foreground font-medium">/ 1,500</span>
-                </div>
-                <span className="text-sm text-foreground/70 font-semibold tracking-wide">slots left</span>
-              </div>
+            <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-2.5">
+              <span key={slotsLeft} className="text-2xl font-bold text-primary tabular-nums animate-flip">
+                {slotsLeft}
+              </span>
+              <span className="text-base text-muted-foreground font-medium">/ 1,500 slots left</span>
             </div>
           </div>
 
@@ -79,16 +73,12 @@ const Header = () => {
                 </Link>)}
               
               <div className="flex flex-col space-y-3 pt-4 border-t border-border">
-                <div className="relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-primary/50 to-primary rounded-xl opacity-20 blur"></div>
-                  <div className="relative bg-gradient-to-br from-card to-muted/30 border-2 border-primary/20 rounded-xl px-4 py-4 text-center shadow-gold">
-                    <div className="flex items-baseline justify-center gap-1.5">
-                      <span className="text-3xl font-bold text-primary tabular-nums">
-                        {slotsLeft}
-                      </span>
-                      <span className="text-base text-muted-foreground">/ 1,500</span>
-                    </div>
-                    <span className="text-xs text-foreground/70 font-semibold tracking-wide mt-1 block">slots left</span>
+                <div className="bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 text-center">
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span key={slotsLeft} className="text-2xl font-bold text-primary tabular-nums animate-flip">
+                      {slotsLeft}
+                    </span>
+                    <span className="text-base text-muted-foreground font-medium">/ 1,500 slots left</span>
                   </div>
                 </div>
               </div>
