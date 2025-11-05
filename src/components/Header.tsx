@@ -16,10 +16,20 @@ const Header = () => {
   }, []);
   const [slotsLeft, setSlotsLeft] = useState(253);
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSlotsLeft(prev => Math.max(100, prev - 1));
-    }, 8000); // Decrease every 8 seconds
-    return () => clearInterval(interval);
+    const scheduleNextDecrease = () => {
+      const randomDelay = Math.floor(Math.random() * (12000 - 5000 + 1)) + 5000; // Random delay between 5-12 seconds
+      const timeout = setTimeout(() => {
+        setSlotsLeft(prev => {
+          const newValue = Math.max(100, prev - 1);
+          if (newValue > 100) scheduleNextDecrease();
+          return newValue;
+        });
+      }, randomDelay);
+      return timeout;
+    };
+    
+    const timeout = scheduleNextDecrease();
+    return () => clearTimeout(timeout);
   }, []);
   const navLinks = [{
     name: 'Home',
