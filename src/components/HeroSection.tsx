@@ -1,41 +1,8 @@
 import { useState, useEffect } from 'react';
-import HeroChatInput from './HeroChatInput';
-import avatar1 from '@/assets/avatar-1.jpg';
-import avatar2 from '@/assets/avatar-2.jpg';
-import avatar3 from '@/assets/avatar-3.jpg';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 const HeroSection = () => {
-  const [currentWord, setCurrentWord] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
-  const words = ['You', 'Students', 'Lawyers', 'Everyday People', 'All'];
-  useEffect(() => {
-    const typeWord = async () => {
-      const word = words[currentIndex];
-      if (isTyping) {
-        // Type out the word
-        for (let i = 0; i <= word.length; i++) {
-          setCurrentWord(word.slice(0, i));
-          await new Promise(resolve => setTimeout(resolve, 150));
-        }
-
-        // Pause at complete word
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setIsTyping(false);
-      } else {
-        // Delete the word
-        for (let i = word.length; i >= 0; i--) {
-          setCurrentWord(word.slice(0, i));
-          await new Promise(resolve => setTimeout(resolve, 100));
-        }
-
-        // Move to next word
-        setCurrentIndex(prev => (prev + 1) % words.length);
-        setIsTyping(true);
-      }
-    };
-    typeWord();
-  }, [currentIndex, isTyping]);
-  const avatars = [avatar1, avatar2, avatar3];
+  const [email, setEmail] = useState('');
   return <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden pt-16">
       {/* Video Background with solid black background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
@@ -64,27 +31,31 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          
-
-          
-
-          
-
-          <p className="text-sm sm:text-base text-gray-300 mb-6 px-4">
-            Click below to join <span className="font-bold text-primary">1,247+ law students</span> already on early access.
+          <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 mb-12 px-4 font-light">
+            Understand any topic. Find any case. Ace every exam.
           </p>
 
-          {/* CTA Button */}
-          <button className="btn-gold text-lg mb-8 px-8 py-4" onClick={() => {
-          const waitlistSection = document.querySelector('#waitlist') || document.querySelector('section[class*="waitlist"]') || document.querySelector('form');
-          if (waitlistSection) {
-            waitlistSection.scrollIntoView({
-              behavior: 'smooth'
-            });
-          }
-        }}>Join the Waitlist</button>
-
-          {/* Trusted By Section */}
+          {/* Email Signup Form */}
+          <div className="max-w-2xl mx-auto mb-6 px-4">
+            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg"
+              />
+              <Button 
+                size="lg"
+                className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform"
+              >
+                Join Early Access
+              </Button>
+            </div>
+            <p className="text-sm text-gray-300 mt-4 text-center">
+              Join <span className="font-bold text-primary">1,247+ law students</span> already on early access.
+            </p>
+          </div>
           
         </div>
       </div>

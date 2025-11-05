@@ -14,15 +14,18 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  const [slotsLeft, setSlotsLeft] = useState(253);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlotsLeft(prev => Math.max(100, prev - 1));
+    }, 8000); // Decrease every 8 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   const navLinks = [{
     name: 'Home',
     href: '/'
-  }, {
-    name: 'Use Cases',
-    href: '/use-cases'
-  }, {
-    name: 'About Us',
-    href: '/about'
   }];
   const productLinks = [{
     name: 'Lawexa Student',
@@ -49,9 +52,17 @@ const Header = () => {
               </Link>)}
           </nav>
 
-          {/* Desktop Auth Buttons */}
+          {/* Desktop Counter */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button className="btn-gold" onClick={() => window.location.href = '/#waitlist'}>291/500 Slots Left</Button>
+            <div className="flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-6 py-2.5 shadow-lg">
+              <div className="flex items-baseline gap-1">
+                <span className="text-2xl font-bold text-primary tabular-nums transition-all duration-500 animate-pulse">
+                  {slotsLeft}
+                </span>
+                <span className="text-sm text-muted-foreground font-medium">/ 1,500</span>
+              </div>
+              <span className="text-sm text-foreground font-medium">slots left</span>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -71,12 +82,14 @@ const Header = () => {
                 </Link>)}
               
               <div className="flex flex-col space-y-3 pt-4 border-t border-border">
-                <Button className="w-full btn-gold" onClick={() => {
-              setIsMenuOpen(false);
-              window.location.href = '/#waitlist';
-            }}>
-                  Join Waitlist
-                </Button>
+                <div className="bg-primary/10 border border-primary/30 rounded-xl px-4 py-3 text-center">
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-2xl font-bold text-primary tabular-nums">
+                      {slotsLeft}
+                    </span>
+                    <span className="text-sm text-muted-foreground">/ 1,500 slots left</span>
+                  </div>
+                </div>
               </div>
             </nav>
           </div>}

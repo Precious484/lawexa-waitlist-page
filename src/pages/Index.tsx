@@ -2,17 +2,7 @@ import { useEffect } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import UniversityCarousel from '@/components/UniversityCarousel';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
-import WaitlistForm from '@/components/WaitlistForm';
-import PerksSection from '@/components/PerksSection';
-import caseLibraryInterface from '@/assets/case-library-interface.png';
-import statuteInterface1 from '@/assets/statute-interface-1.png';
-import statuteInterface2 from '@/assets/statute-interface-2.png';
-import communityFoldersInterface from '@/assets/community-folders-interface.png';
-import statuteInterface from '@/assets/statute-interface.png';
 const Index = () => {
   useScrollAnimation();
   useEffect(() => {
@@ -63,25 +53,6 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        
-        {/* Waitlist Form Section */}
-        <section id="waitlist" className="py-20 bg-gradient-to-br from-primary/5 via-background to-primary/10">
-          <div className="container mx-auto px-4">
-            <WaitlistForm />
-          </div>
-        </section>
-
-        {/* Perks Section */}
-        
-
-        {/* App Interface Showcase */}
-        
-        
-        
-        
-        <section id="faq">
-          <FAQSection />
-        </section>
       </main>
       <Footer />
     </div>;
