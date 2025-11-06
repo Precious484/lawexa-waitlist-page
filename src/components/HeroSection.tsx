@@ -7,7 +7,6 @@ const HeroSection = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
     const playVideo = async () => {
       try {
         await video.play();
@@ -26,16 +25,15 @@ const HeroSection = () => {
     video.addEventListener('canplay', playVideo);
 
     // Attempt 4: Use IntersectionObserver
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            playVideo();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playVideo();
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
     observer.observe(video);
 
     // Attempt 5: Try on any user interaction
@@ -46,7 +44,6 @@ const HeroSection = () => {
     };
     document.addEventListener('touchstart', handleInteraction);
     document.addEventListener('click', handleInteraction);
-
     return () => {
       video.removeEventListener('loadedmetadata', playVideo);
       video.removeEventListener('canplay', playVideo);
@@ -77,7 +74,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any case. Ace every exam.</p>
+          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any Case. Ace every exam.</p>
 
           {/* Email Signup Form */}
           <div className="max-w-2xl mx-auto mb-6 px-4">
