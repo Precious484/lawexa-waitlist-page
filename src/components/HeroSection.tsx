@@ -7,49 +7,22 @@ const HeroSection = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    const playVideo = async () => {
-      try {
-        await video.play();
-      } catch (error) {
-        console.log('Video autoplay failed:', error);
-      }
+
+    // Simple play attempt when component mounts
+    const playVideo = () => {
+      video.play().catch(error => {
+        console.log('Video autoplay prevented:', error);
+      });
     };
 
-    // Attempt 1: Try playing immediately
+    // Try to play when video can play
+    video.addEventListener('canplay', playVideo);
+    
+    // Also try immediately
     playVideo();
 
-    // Attempt 2: Try when metadata is loaded
-    video.addEventListener('loadedmetadata', playVideo);
-
-    // Attempt 3: Try when can play
-    video.addEventListener('canplay', playVideo);
-
-    // Attempt 4: Use IntersectionObserver
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          playVideo();
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-    observer.observe(video);
-
-    // Attempt 5: Try on any user interaction
-    const handleInteraction = () => {
-      playVideo();
-      document.removeEventListener('touchstart', handleInteraction);
-      document.removeEventListener('click', handleInteraction);
-    };
-    document.addEventListener('touchstart', handleInteraction);
-    document.addEventListener('click', handleInteraction);
     return () => {
-      video.removeEventListener('loadedmetadata', playVideo);
       video.removeEventListener('canplay', playVideo);
-      observer.disconnect();
-      document.removeEventListener('touchstart', handleInteraction);
-      document.removeEventListener('click', handleInteraction);
     };
   }, []);
   return <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden pt-16">
