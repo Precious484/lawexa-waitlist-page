@@ -17,10 +17,9 @@ const HeroSection = () => {
 
     // Try to play when video can play
     video.addEventListener('canplay', playVideo);
-    
+
     // Also try immediately
     playVideo();
-
     return () => {
       video.removeEventListener('canplay', playVideo);
     };
@@ -47,7 +46,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any Case. Ace every exam.</p>
+          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any Case. Ace every Exam</p>
 
           {/* Email Signup Form */}
           <div className="max-w-2xl mx-auto mb-6 px-4">
