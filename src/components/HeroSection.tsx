@@ -8,30 +8,52 @@ const HeroSection = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Attempt to play video
-    const playVideo = () => {
-      video.play().catch(error => {
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (error) {
         console.log('Video autoplay failed:', error);
-      });
+      }
     };
 
-    // Try playing when video is loaded
-    if (video.readyState >= 3) {
-      playVideo();
-    }
+    // Attempt 1: Try playing immediately
+    playVideo();
 
-    // Use IntersectionObserver to retry when video is in view
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && video.paused) {
-          playVideo();
-        }
-      });
-    }, {
-      threshold: 0.25
-    });
+    // Attempt 2: Try when metadata is loaded
+    video.addEventListener('loadedmetadata', playVideo);
+
+    // Attempt 3: Try when can play
+    video.addEventListener('canplay', playVideo);
+
+    // Attempt 4: Use IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            playVideo();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
     observer.observe(video);
-    return () => observer.disconnect();
+
+    // Attempt 5: Try on any user interaction
+    const handleInteraction = () => {
+      playVideo();
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('click', handleInteraction);
+    };
+    document.addEventListener('touchstart', handleInteraction);
+    document.addEventListener('click', handleInteraction);
+
+    return () => {
+      video.removeEventListener('loadedmetadata', playVideo);
+      video.removeEventListener('canplay', playVideo);
+      observer.disconnect();
+      document.removeEventListener('touchstart', handleInteraction);
+      document.removeEventListener('click', handleInteraction);
+    };
   }, []);
   return <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden pt-16">
       {/* Video Background with solid black background */}
