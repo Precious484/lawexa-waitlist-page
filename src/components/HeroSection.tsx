@@ -1,21 +1,58 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
 const HeroSection = () => {
   const [email, setEmail] = useState('');
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Attempt to play video
+    const playVideo = () => {
+      video.play().catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+    };
+
+    // Try playing when video is loaded
+    if (video.readyState >= 3) {
+      playVideo();
+    }
+
+    // Use IntersectionObserver to retry when video is in view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && video.paused) {
+            playVideo();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
   return <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden pt-16">
       {/* Video Background with solid black background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
-        <video autoPlay loop muted playsInline preload="auto" webkit-playsinline="true" x5-playsinline="true" className="absolute top-0 left-0 w-full h-full object-cover" style={{
-        filter: 'brightness(0.7)'
-      }} onLoadedMetadata={e => {
-        const video = e.currentTarget;
-        video.play().catch(() => {
-          // Fallback if autoplay fails
-        });
-      }}>
-          <source src="/hero-video.mov" type="video/mp4" />
-          <source src="/hero-video.mov" type="video/quicktime" />
+        <video 
+          ref={videoRef}
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          preload="auto"
+          className="absolute top-0 left-0 w-full h-full object-cover" 
+          style={{ filter: 'brightness(0.7)' }}
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
