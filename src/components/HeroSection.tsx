@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
 const HeroSection = () => {
   const [email, setEmail] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
-
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -23,35 +21,24 @@ const HeroSection = () => {
     }
 
     // Use IntersectionObserver to retry when video is in view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && video.paused) {
-            playVideo();
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && video.paused) {
+          playVideo();
+        }
+      });
+    }, {
+      threshold: 0.25
+    });
     observer.observe(video);
-
     return () => observer.disconnect();
   }, []);
-
   return <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden pt-16">
       {/* Video Background with solid black background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
-        <video 
-          ref={videoRef}
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          preload="auto"
-          className="absolute top-0 left-0 w-full h-full object-cover" 
-          style={{ filter: 'brightness(0.7)' }}
-        >
+        <video ref={videoRef} autoPlay loop muted playsInline preload="auto" className="absolute top-0 left-0 w-full h-full object-cover" style={{
+        filter: 'brightness(0.7)'
+      }}>
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for better text readability */}
@@ -68,7 +55,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand any topic. Find any case. Ace every exam.</p>
+          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any case. Ace every exam.</p>
 
           {/* Email Signup Form */}
           <div className="max-w-2xl mx-auto mb-6 px-4">
