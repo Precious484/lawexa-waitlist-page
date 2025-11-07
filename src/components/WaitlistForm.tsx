@@ -17,17 +17,36 @@ const WaitlistForm = () => {
   const { toast } = useToast();
 
   // Extract referral code from URL on component mount
+  // Also check for waitlist data in sessionStorage
   useEffect(() => {
     const refCode = getReferralCodeFromUrl();
     if (refCode) {
       setReferralCode(refCode);
       console.log('Referral code detected:', refCode);
     }
+
+    // Check if we have waitlist data from a redirect
+    const storedData = sessionStorage.getItem('waitlistData');
+    if (storedData) {
+      try {
+        const data = JSON.parse(storedData);
+        setWaitlistData(data);
+        setEmail(data.email);
+        setIsSubmitted(true);
+        // Clear the session storage
+        sessionStorage.removeItem('waitlistData');
+      } catch (error) {
+        console.error('Error parsing waitlist data:', error);
+      }
+    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('handleSubmit called!', { email, name, referralCode });
     e.preventDefault();
+
     if (!email) {
+      console.log('Email validation failed');
       toast({
         title: "Missing Information",
         description: "Please enter your email address.",
@@ -36,6 +55,7 @@ const WaitlistForm = () => {
       return;
     }
 
+    console.log('Setting loading state to true');
     setIsLoading(true);
 
     try {
