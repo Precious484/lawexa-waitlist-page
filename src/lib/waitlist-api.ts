@@ -50,25 +50,60 @@ export interface ApiErrorResponse {
 export async function joinWaitlist(
   data: WaitlistJoinRequest
 ): Promise<WaitlistJoinResponse> {
-  const response = await fetch(`${API_BASE_URL}/waitlist`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+  console.log('Sending waitlist request to:', `${API_BASE_URL}/waitlist`);
+  console.log('Request data:', data);
 
-  const result = await response.json();
+  try {
+    const response = await fetch(`${API_BASE_URL}/waitlist`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-  if (!response.ok) {
+    console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+    let result;
+    const contentType = response.headers.get('content-type');
+
+    if (contentType && contentType.includes('application/json')) {
+      result = await response.json();
+      console.log('Response data:', result);
+    } else {
+      const text = await response.text();
+      console.error('Non-JSON response:', text);
+      throw {
+        status: response.status,
+        message: 'Server returned non-JSON response',
+        text: text,
+      };
+    }
+
+    if (!response.ok) {
+      console.error('API error response:', result);
+      throw {
+        status: response.status,
+        ...result,
+      };
+    }
+
+    return result;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    // Re-throw if it's already our custom error
+    if (error && typeof error === 'object' && 'status' in error) {
+      throw error;
+    }
+    // Otherwise wrap it
     throw {
-      status: response.status,
-      ...result,
+      status: 0,
+      message: error instanceof Error ? error.message : 'Network error occurred',
+      originalError: error,
     };
   }
-
-  return result;
 }
 
 /**

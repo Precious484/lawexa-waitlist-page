@@ -64,7 +64,14 @@ const WaitlistForm = () => {
       console.error('Error joining waitlist:', error);
 
       // Handle different error types
-      if (error.status === 422) {
+      if (error.status === 0) {
+        // Network error (CORS, no internet, etc.)
+        toast({
+          title: "Connection Error",
+          description: error.message || "Unable to connect to the server. Please check your connection and try again.",
+          variant: "destructive"
+        });
+      } else if (error.status === 422) {
         // Validation errors
         const errorMessage = error.errors?.email?.[0] || error.message || "This email is already on the waitlist.";
         toast({
@@ -79,11 +86,19 @@ const WaitlistForm = () => {
           description: "Please wait a moment and try again.",
           variant: "destructive"
         });
+      } else if (error.status === 403 || error.status === 401) {
+        // Access denied
+        toast({
+          title: "Access Denied",
+          description: "Unable to access the waitlist service. Please try again later.",
+          variant: "destructive"
+        });
       } else {
         // Generic error
+        const errorMsg = error.message || error.text || "Please try again later or contact support.";
         toast({
           title: "Something went wrong",
-          description: "Please try again later or contact support.",
+          description: errorMsg,
           variant: "destructive"
         });
       }
