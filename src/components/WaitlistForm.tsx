@@ -1,17 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle, Zap, Scale, Lightbulb, Compass, TrendingUp, Sparkles, Users, Gift } from 'lucide-react';
+import { CheckCircle, Zap, Scale, Lightbulb, Compass, TrendingUp, Sparkles, Users, Gift, Copy, Share2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { joinWaitlist, getReferralCodeFromUrl, type WaitlistJoinResponse } from '@/lib/waitlist-api';
 import caseLibraryInterface from '@/assets/case-library-interface.png';
 import communityFoldersInterface from '@/assets/community-folders-interface.png';
+
 const WaitlistForm = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const [waitlistData, setWaitlistData] = useState<WaitlistJoinResponse['data'] | null>(null);
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  // Extract referral code from URL on component mount
+  useEffect(() => {
+    const refCode = getReferralCodeFromUrl();
+    if (refCode) {
+      setReferralCode(refCode);
+      console.log('Referral code detected:', refCode);
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
@@ -22,30 +35,190 @@ const WaitlistForm = () => {
       });
       return;
     }
+
     setIsLoading(true);
-    setTimeout(() => {
+
+    try {
+      const requestData: any = { email };
+
+      // Add optional name if provided
+      if (name.trim()) {
+        requestData.name = name.trim();
+      }
+
+      // Add referral code if available
+      if (referralCode) {
+        requestData['waitlist-ref'] = referralCode;
+      }
+
+      const response = await joinWaitlist(requestData);
+
+      setWaitlistData(response.data);
       setIsSubmitted(true);
-      setIsLoading(false);
+
       toast({
         title: "Welcome to the Waitlist! 🎉",
-        description: "We'll notify you when Lawexa launches."
+        description: `You're #${response.data.position} on the list!`
       });
-    }, 1000);
+    } catch (error: any) {
+      console.error('Error joining waitlist:', error);
+
+      // Handle different error types
+      if (error.status === 422) {
+        // Validation errors
+        const errorMessage = error.errors?.email?.[0] || error.message || "This email is already on the waitlist.";
+        toast({
+          title: "Unable to Join",
+          description: errorMessage,
+          variant: "destructive"
+        });
+      } else if (error.status === 429) {
+        // Rate limiting
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait a moment and try again.",
+          variant: "destructive"
+        });
+      } else {
+        // Generic error
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later or contact support.",
+          variant: "destructive"
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
-  if (isSubmitted) {
+
+  const copyReferralLink = () => {
+    if (waitlistData?.referral_link) {
+      navigator.clipboard.writeText(waitlistData.referral_link);
+      toast({
+        title: "Copied!",
+        description: "Referral link copied to clipboard."
+      });
+    }
+  };
+
+  const shareReferralLink = async () => {
+    if (!waitlistData?.referral_link) return;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Join Lawexa Waitlist',
+          text: 'Join me on the Lawexa waitlist - the AI legal assistant that makes law easy!',
+          url: waitlistData.referral_link
+        });
+      } catch (err) {
+        // User cancelled share or share not supported
+        copyReferralLink();
+      }
+    } else {
+      copyReferralLink();
+    }
+  };
+  if (isSubmitted && waitlistData) {
     return <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center bg-card border-2 border-primary/20 rounded-3xl p-12 shadow-gold animate-scale-in">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-3xl blur-xl" />
+          <div className="max-w-3xl mx-auto space-y-8">
+            {/* Success Message */}
+            <div className="text-center bg-card border-2 border-primary/20 rounded-3xl p-12 shadow-gold animate-scale-in">
               <div className="relative">
-                <CheckCircle className="w-24 h-24 text-primary mx-auto mb-6 animate-pulse" />
-                <h3 className="text-5xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-4">
-                  You're on the list!
-                </h3>
-                <p className="text-muted-foreground text-xl leading-relaxed">
-                  We'll send you an email at <span className="text-primary font-bold">{email}</span> when we launch.
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-3xl blur-xl" />
+                <div className="relative">
+                  <CheckCircle className="w-24 h-24 text-primary mx-auto mb-6 animate-pulse" />
+                  <h3 className="text-5xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-4">
+                    You're on the list!
+                  </h3>
+                  <div className="text-muted-foreground text-xl leading-relaxed mb-6">
+                    We'll send you an email at <span className="text-primary font-bold">{email}</span> when we launch.
+                  </div>
+
+                  {/* Position Badge */}
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 rounded-2xl px-8 py-4 mb-8">
+                    <Sparkles className="w-6 h-6 text-primary" />
+                    <span className="text-2xl font-bold text-foreground">
+                      You're #{waitlistData.position} on the waitlist
+                    </span>
+                  </div>
+
+                  {/* Referral Stats */}
+                  <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-8">
+                    <div className="bg-muted/50 rounded-xl p-4 border border-primary/10">
+                      <div className="text-3xl font-bold text-primary">{waitlistData.position}</div>
+                      <div className="text-sm text-muted-foreground">Your Position</div>
+                    </div>
+                    <div className="bg-muted/50 rounded-xl p-4 border border-primary/10">
+                      <div className="text-3xl font-bold text-primary">{waitlistData.total_referrals}</div>
+                      <div className="text-sm text-muted-foreground">Referrals</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Referral Section */}
+            <div className="bg-gradient-to-br from-card to-muted/30 border-2 border-primary/20 rounded-3xl p-10 shadow-lg">
+              <div className="text-center mb-6">
+                <h4 className="text-3xl font-bold text-foreground mb-3 flex items-center justify-center gap-3">
+                  <Gift className="w-8 h-8 text-primary" />
+                  Move Up the List!
+                </h4>
+                <p className="text-muted-foreground text-lg">
+                  Share your unique referral link and jump ahead in line. The more friends you refer, the higher you climb!
                 </p>
+              </div>
+
+              {/* Referral Link */}
+              <div className="bg-background/80 backdrop-blur-sm border-2 border-primary/20 rounded-xl p-4 mb-4">
+                <div className="text-xs text-muted-foreground mb-2 font-semibold">YOUR REFERRAL LINK</div>
+                <div className="flex items-center gap-3">
+                  <code className="flex-1 text-sm font-mono text-foreground bg-muted/50 rounded px-3 py-2 overflow-x-auto">
+                    {waitlistData.referral_link}
+                  </code>
+                  <Button
+                    onClick={copyReferralLink}
+                    variant="outline"
+                    size="sm"
+                    className="flex-shrink-0"
+                  >
+                    <Copy className="w-4 h-4 mr-2" />
+                    Copy
+                  </Button>
+                </div>
+              </div>
+
+              {/* Referral Code */}
+              <div className="bg-background/80 backdrop-blur-sm border-2 border-primary/20 rounded-xl p-4 mb-6">
+                <div className="text-xs text-muted-foreground mb-2 font-semibold">YOUR REFERRAL CODE</div>
+                <code className="text-2xl font-bold text-primary font-mono">
+                  {waitlistData.referral_code}
+                </code>
+              </div>
+
+              {/* Share Button */}
+              <Button
+                onClick={shareReferralLink}
+                size="lg"
+                className="w-full h-14 text-lg font-bold shadow-gold hover:shadow-2xl transition-all duration-300"
+              >
+                <Share2 className="w-5 h-5 mr-2" />
+                Share Your Link
+              </Button>
+
+              {/* Incentive */}
+              <div className="mt-6 bg-primary/5 border-l-4 border-primary rounded-r-xl p-6">
+                <p className="text-foreground font-bold text-lg mb-2">
+                  🎁 Referral Rewards
+                </p>
+                <ul className="text-muted-foreground space-y-1">
+                  <li>• 3 referrals: Jump 10 spots</li>
+                  <li>• 5 referrals: Jump 25 spots + Early VIP access</li>
+                  <li>• 10 referrals: Top 100 + Lagos Launch Event invite</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -74,11 +247,33 @@ const WaitlistForm = () => {
                 <Sparkles className="w-7 h-7 text-primary animate-pulse" />
                 <h3 className="text-3xl font-bold text-foreground">We are Launching Soon</h3>
               </div>
-              
+
               <p className="text-muted-foreground text-lg mb-8">Ask any legal question. Find any case. Ace any law exam</p>
-              
+
+              {referralCode && (
+                <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 mb-6">
+                  <p className="text-sm text-foreground">
+                    ✨ You were referred! Join now to help your friend move up the list.
+                  </p>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-5">
-                <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border focus:border-primary transition-all duration-300 rounded-xl" required />
+                <Input
+                  type="text"
+                  placeholder="👤 Your name (optional)"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border focus:border-primary transition-all duration-300 rounded-xl"
+                />
+                <Input
+                  type="email"
+                  placeholder="📩 Enter your email address"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border focus:border-primary transition-all duration-300 rounded-xl"
+                  required
+                />
                 <Button type="submit" size="lg" className="w-full h-16 text-xl font-bold shadow-gold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]" disabled={isLoading}>
                   {isLoading ? "Joining..." : <>
                       <Zap className="mr-2 h-6 w-6" />
@@ -374,9 +569,31 @@ const WaitlistForm = () => {
                   Join <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">1,247 Students</span><br />
                   Already Inside
                 </h2>
-                
+
+                {referralCode && (
+                  <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 mb-6">
+                    <p className="text-foreground">
+                      ✨ You were referred! Join now to help your friend move up the list.
+                    </p>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <Input type="email" placeholder="📩 Enter your email address" value={email} onChange={e => setEmail(e.target.value)} className="h-16 text-xl bg-background/80 backdrop-blur-sm border-2 border-primary/30 focus:border-primary transition-all duration-300 rounded-xl shadow-lg" required />
+                  <Input
+                    type="text"
+                    placeholder="👤 Your name (optional)"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    className="h-16 text-xl bg-background/80 backdrop-blur-sm border-2 border-primary/30 focus:border-primary transition-all duration-300 rounded-xl shadow-lg"
+                  />
+                  <Input
+                    type="email"
+                    placeholder="📩 Enter your email address"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className="h-16 text-xl bg-background/80 backdrop-blur-sm border-2 border-primary/30 focus:border-primary transition-all duration-300 rounded-xl shadow-lg"
+                    required
+                  />
                   <Button type="submit" size="lg" className="w-full h-16 text-xl font-bold shadow-gold hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]" disabled={isLoading}>
                     {isLoading ? "Joining..." : <>
                         <Zap className="mr-2 h-7 w-7" />
