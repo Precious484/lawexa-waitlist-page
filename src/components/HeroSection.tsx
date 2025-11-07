@@ -6,13 +6,16 @@ import { useToast } from '@/hooks/use-toast';
 import { joinWaitlist, getReferralCodeFromUrl } from '@/lib/waitlist-api';
 
 const HeroSection = () => {
+  console.log('🔵 HeroSection component loaded!');
+
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log('HeroSection handleSubmit called!', { email });
+    console.log('🟢 handleSubmit called!', { email });
     e.preventDefault();
 
     if (!email) {
@@ -153,6 +156,9 @@ const HeroSection = () => {
                 size="lg"
                 className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform"
                 disabled={isLoading}
+                onClick={(e) => {
+                  console.log('🔴 Button clicked!', e);
+                }}
               >
                 {isLoading ? 'Joining...' : 'Get Early Access'}
               </Button>
