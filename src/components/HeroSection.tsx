@@ -1,37 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
+import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
-  const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!email) {
-      toast({
-        title: "Missing Information",
-        description: "Please enter your email address.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsLoading(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Welcome to the Waitlist! 🎉",
-        description: "We'll notify you when Lawexa launches.",
-      });
-      setEmail(''); // Clear the email field after successful submission
-    }, 1000);
-  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -77,21 +47,6 @@ const HeroSection = () => {
           {/* Subtitle */}
           <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any Case. Ace every Exam</p>
 
-          {/* Email Signup Form */}
-          <div className="max-w-2xl mx-auto mb-6 px-4">
-            <form onSubmit={handleSubmit}>
-              <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-                <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg" required />
-                <Button type="submit" size="lg" className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform" disabled={isLoading}>
-                  {isLoading ? "Joining..." : "Get Early Access"}
-                </Button>
-              </div>
-            </form>
-            <p className="text-sm text-gray-300 mt-4 text-center">
-              Join <span className="font-bold text-primary">1,247+ law students</span> already on early access.
-            </p>
-          </div>
-          
         </div>
       </div>
     </section>;
