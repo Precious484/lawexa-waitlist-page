@@ -4,34 +4,114 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 
 const HeroSection = () => {
+  const [step, setStep] = useState(1); // 1 = email step, 2 = name step
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [referralCode, setReferralCode] = useState<string | null>(null);
   const { toast } = useToast();
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Check for referral code in URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const refCode = params.get('waitlist-ref');
+    if (refCode) {
+      setReferralCode(refCode);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email) {
-      toast({
-        title: "Missing Information",
-        description: "Please enter your email address.",
-        variant: "destructive",
-      });
-      return;
+    if (step === 1) {
+      // Step 1: Validate email and move to step 2
+      if (!email) {
+        toast({
+          title: "Missing Information",
+          description: "Please enter your email address.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast({
+          title: "Invalid Email",
+          description: "Please enter a valid email address.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setStep(2);
+    } else {
+      // Step 2: Validate name and submit to API
+      if (!name) {
+        toast({
+          title: "Missing Information",
+          description: "Please enter your name.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setIsLoading(true);
+
+      try {
+        const payload: any = {
+          email: email,
+          name: name,
+        };
+
+        // Add referral code if present
+        if (referralCode) {
+          payload['waitlist-ref'] = referralCode;
+        }
+
+        const response = await fetch('https://waitlistapi.lawexa.com/api/waitlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          toast({
+            title: "Welcome to the Waitlist! 🎉",
+            description: `You're #${data.data.position} on the list! Check your email for your referral link.`,
+          });
+
+          // Reset form
+          setEmail('');
+          setName('');
+          setStep(1);
+        } else {
+          // Handle validation errors
+          const errorMessage = data.message || 'Something went wrong. Please try again.';
+          toast({
+            title: "Error",
+            description: errorMessage,
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Waitlist API error:', error);
+        toast({
+          title: "Connection Error",
+          description: "Unable to connect to the waitlist. Please try again later.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
     }
-
-    setIsLoading(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Welcome to the Waitlist! 🎉",
-        description: "We'll notify you when Lawexa launches.",
-      });
-      setEmail(''); // Clear the email field after successful submission
-    }, 1000);
   };
 
   useEffect(() => {
@@ -82,9 +162,32 @@ const HeroSection = () => {
           <div className="max-w-2xl mx-auto mb-6 px-4">
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-                <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg" required />
-                <Button type="submit" size="lg" className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform" disabled={isLoading}>
-                  {isLoading ? "Joining..." : "Get Early Access"}
+                {step === 1 ? (
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg"
+                    required
+                  />
+                ) : (
+                  <Input
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg"
+                    required
+                  />
+                )}
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Joining..." : step === 1 ? "Get Early Access" : "Complete"}
                 </Button>
               </div>
             </form>
