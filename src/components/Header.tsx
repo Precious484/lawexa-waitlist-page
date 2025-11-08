@@ -3,33 +3,21 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import lawexaLogo from '@/assets/lawexa-logo.png';
+import { useWaitlistCount } from '@/hooks/useWaitlistCount';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+
+  // Fetch live waitlist count from API
+  const { slotsLeft, isLoading, isError } = useWaitlistCount();
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  const [slotsLeft, setSlotsLeft] = useState(253);
-  useEffect(() => {
-    const scheduleNextDecrease = () => {
-      const randomDelay = Math.floor(Math.random() * (12000 - 5000 + 1)) + 5000; // Random delay between 5-12 seconds
-      const timeout = setTimeout(() => {
-        setSlotsLeft(prev => {
-          const newValue = Math.max(100, prev - 1);
-          if (newValue > 100) scheduleNextDecrease();
-          return newValue;
-        });
-      }, randomDelay);
-      return timeout;
-    };
-    
-    const timeout = scheduleNextDecrease();
-    return () => clearTimeout(timeout);
   }, []);
   const navLinks = [{
     name: 'Home',
@@ -59,9 +47,19 @@ const Header = () => {
           {/* Desktop Counter */}
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-2.5">
-              <span key={slotsLeft} className="text-2xl font-bold text-primary tabular-nums animate-flip">
-                {slotsLeft}
-              </span>
+              {isLoading ? (
+                <span className="text-2xl font-bold text-primary tabular-nums animate-pulse">
+                  ...
+                </span>
+              ) : isError ? (
+                <span className="text-2xl font-bold text-primary tabular-nums">
+                  ---
+                </span>
+              ) : (
+                <span key={slotsLeft} className="text-2xl font-bold text-primary tabular-nums animate-flip">
+                  {slotsLeft}
+                </span>
+              )}
               <span className="text-base text-muted-foreground font-medium">/ 1,500 slots left</span>
             </div>
           </div>
@@ -85,9 +83,19 @@ const Header = () => {
               <div className="flex flex-col space-y-3 pt-4 border-t border-border">
                 <div className="bg-primary/10 border border-primary/20 rounded-xl px-4 py-3 text-center">
                   <div className="flex items-baseline justify-center gap-1">
-                    <span key={slotsLeft} className="text-2xl font-bold text-primary tabular-nums animate-flip">
-                      {slotsLeft}
-                    </span>
+                    {isLoading ? (
+                      <span className="text-2xl font-bold text-primary tabular-nums animate-pulse">
+                        ...
+                      </span>
+                    ) : isError ? (
+                      <span className="text-2xl font-bold text-primary tabular-nums">
+                        ---
+                      </span>
+                    ) : (
+                      <span key={slotsLeft} className="text-2xl font-bold text-primary tabular-nums animate-flip">
+                        {slotsLeft}
+                      </span>
+                    )}
                     <span className="text-base text-muted-foreground font-medium">/ 1,500 slots left</span>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { useInvalidateWaitlistCount } from '@/hooks/useWaitlistCount';
 
 const HeroSection = () => {
   const [step, setStep] = useState(1); // 1 = email step, 2 = name step
@@ -11,6 +12,7 @@ const HeroSection = () => {
   const [referralCode, setReferralCode] = useState<string | null>(null);
   const { toast } = useToast();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const invalidateWaitlistCount = useInvalidateWaitlistCount();
 
   // Check for referral code in URL on mount
   useEffect(() => {
@@ -83,6 +85,9 @@ const HeroSection = () => {
         const data = await response.json();
 
         if (response.ok && data.success) {
+          // Invalidate the waitlist count to trigger a refetch
+          invalidateWaitlistCount();
+
           toast({
             title: "Welcome to the Waitlist! 🎉",
             description: `You're #${data.data.position} on the list! Check your email for your referral link.`,
@@ -150,50 +155,81 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto fade-in">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg px-4">
-            <span className="text-white">Your classmates aren't smarter than you.</span>
+            <span className="text-white">Legal Intelligence</span>
             <br />
-            <span className="text-primary">They're just using Lawexa.</span>
+            <span className="text-primary">For All</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any Case. Ace every Exam</p>
+          <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Ask any legal question. Understand contracts and case law in minutes.<br />No law degree required.</p>
 
           {/* Email Signup Form */}
           <div className="max-w-2xl mx-auto mb-6 px-4">
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-                {step === 1 ? (
+                <div className="relative w-full sm:w-96 h-14">
                   <Input
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg"
-                    required
+                    className={`h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full rounded-xl shadow-lg transition-all duration-700 ease-out ${
+                      step === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none absolute top-0 left-0'
+                    }`}
+                    required={step === 1}
                   />
-                ) : (
                   <Input
                     type="text"
                     placeholder="Enter your name"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg"
-                    required
+                    className={`h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full rounded-xl shadow-lg transition-all duration-700 ease-out ${
+                      step === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none absolute top-0 left-0'
+                    }`}
+                    required={step === 2}
                   />
-                )}
+                </div>
                 <Button
                   type="submit"
                   size="lg"
-                  className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform"
+                  className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform relative overflow-hidden"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Joining..." : step === 1 ? "Get Early Access" : "Complete"}
+                  {isLoading ? (
+                    "Joining..."
+                  ) : (
+                    <span className="relative inline-block h-6">
+                      <span
+                        className={`inline-block transition-all duration-700 ease-out ${
+                          step === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 absolute left-0'
+                        }`}
+                      >
+                        Get Early Access
+                      </span>
+                      <span
+                        className={`inline-block transition-all duration-700 ease-out ${
+                          step === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 absolute left-0'
+                        }`}
+                      >
+                        Complete
+                      </span>
+                    </span>
+                  )}
                 </Button>
               </div>
             </form>
-            <p className="text-sm text-gray-300 mt-4 text-center">
-              Join <span className="font-bold text-primary">1,247+ law students</span> already on early access.
-            </p>
+            <div className="relative h-6 mt-4">
+              <p className={`text-sm text-gray-300 text-center absolute inset-0 transition-all duration-700 ease-out ${
+                step === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+              }`}>
+                Join <span className="font-bold text-primary">others</span> already on early access.
+              </p>
+              <p className={`text-sm text-gray-300 text-center absolute inset-0 transition-all duration-700 ease-out ${
+                step === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
+                Enter your name to <span className="font-bold text-primary">complete signup</span>
+              </p>
+            </div>
           </div>
 
         </div>
