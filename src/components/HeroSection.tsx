@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useEffect, useRef } from 'react';
+
 const HeroSection = () => {
-  const [email, setEmail] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -48,17 +47,6 @@ const HeroSection = () => {
           {/* Subtitle */}
           <p className="text-xl sm:text-2xl mb-12 px-4 text-gray-400 md:text-xl font-semibold">Understand Law. Find any Case. Ace every Exam</p>
 
-          {/* Email Signup Form */}
-          <div className="max-w-2xl mx-auto mb-6 px-4">
-            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-              <Input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} className="h-14 text-lg bg-white/95 backdrop-blur-sm border-2 border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground w-full sm:w-96 rounded-xl shadow-lg" />
-              <Button size="lg" className="btn-gold text-lg px-8 h-14 whitespace-nowrap w-full sm:w-auto rounded-xl shadow-lg hover:scale-105 transition-transform">Get Early Access</Button>
-            </div>
-            <p className="text-sm text-gray-300 mt-4 text-center">
-              Join <span className="font-bold text-primary">1,247+ law students</span> already on early access.
-            </p>
-          </div>
-          
         </div>
       </div>
     </section>;
